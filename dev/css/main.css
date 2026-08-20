@@ -2035,12 +2035,14 @@ input:-moz-placeholder {
 }
 
 .side-menu {
-  z-index: -1;
   position: fixed;
   top: 175px;
-  right: 0%;
+  right: 0;
+  z-index: 100;
   width: 245px;
   height: calc(100vh - 175px);
+  visibility: hidden;
+  pointer-events: none;
 }
 .side-menu .footer__socials {
   margin-top: 60px;
@@ -2061,7 +2063,7 @@ input:-moz-placeholder {
   padding: 30px;
   background: #fff;
   transform: translateX(100%);
-  transition: transform 0.4s ease;
+  transition: transform 0s ease;
   overflow-y: auto;
 }
 .side-menu__nav {
@@ -2077,10 +2079,11 @@ input:-moz-placeholder {
   letter-spacing: -0.01px;
 }
 .side-menu.active {
-  z-index: 100;
+  visibility: visible;
+  pointer-events: auto;
 }
 .side-menu.active .side-menu__body {
-  transform: translateX(0%);
+  transform: translateX(0);
 }
 
 .side-menu__overlay {
