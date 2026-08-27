@@ -38,6 +38,10 @@
       width: 32.7%
    .pay .order__per input.input_4
       width: 41.5%
+   .history-item__pic
+      width: 620px
+   .vacan__item
+      width: 32.2%
 @media screen and (max-width: 1300px)
    .side-menu, .side-menu__overlay
       top: 157px
@@ -331,6 +335,20 @@
          top: 80px
    .side-menu
       height: calc(100vh - 80px)
+   .history-item__pic 
+      width: 440px
+      height: 247px
+   .vacan__item 
+      width: 31.8%
+   .vacan__title
+      line-height: 22px
+      font-size: 20px
+   .vacan 
+      padding-bottom: 50px
+      .order__select
+         width: 48% !important
+   .vacan__options
+      margin: 30px 0
 @media ( max-width: 950px )
    .sales-page .tabs
       flex-direction: column
@@ -493,7 +511,31 @@
          top: 80px
    .side-menu
       height: calc(100vh - 80px)
+   .history-item
+      .news-item__top
+         position: relative
+         flex-direction: column-reverse
+   .history-item__pic 
+      width: 100%
+      height: 197px
+      margin-bottom: 30px
+   .vacan__item
+      width: 48.3%
+      position: relative
+      padding: 20px 15px 15px 20px
+   .vacan__text
+      width: 100%
+      max-width: 181px
+   .vacan__arrow 
+      position: absolute
+      bottom: 15px
+      right: 15px
+      margin: 0
 @media screen and (max-width: 767px)
+   .history-item__btn
+      width: 100%
+   .history-item .news-item__content h1
+      margin-bottom: 20px
    .nav__link
       display: none
    .side-menu__btn
@@ -695,6 +737,47 @@
       height: calc(100vh - 61px)
    .sec
       margin-top: 70px !important
+   .sales-page__row a
+      &:nth-child(n+7)
+         display: none
+   .pagination__arrow, .pagination ul li
+      width: 30px
+      height: 30px
+      font-size: 10px
+      a 
+         font-size: 10px
+   .local__item
+      z-index: 90
+      &:first-child
+         z-index: 91
+   .nav__bottom
+      z-index: 93
+   .nav .nav__local
+      z-index: 94
+   .pagination__arrow
+      .svg 
+         width: 5px
+   .vacan__options
+      margin-top: 20px
+      flex-direction: column
+      gap: 10px
+      .order__select-head
+         height: 36px
+         padding: 0 15px
+   .vacan .order__select
+      width: 100% !important
+   .vacan__item
+      width: 100%
+   .vacan__box
+      gap: 10px
+   .vacan__text 
+      width: 100%
+      max-width: 233px
+      font-size: 13px
+      line-height: 14px
+   .vacan__title
+      width: 100%
+      max-width: 238px
 @media screen and (max-width: 576px)
    .pay__item
       img 
