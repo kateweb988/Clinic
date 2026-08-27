@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="date=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="email=no">
+	<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+
+	<title>Клиника столица</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<!-- Favicon -->
+	<!-- <link rel="icon" href="img/fav.png" type="image/x-icon">
+	<link rel="shortcut icon" href="img/fav.png" type="image/x-icon"> -->
+	<!-- OG -->
+	<meta property="og:locale" content="ru-Ru">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+
+	<link rel="stylesheet" type="text/css" href="css/glightbox.min.css">
+	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+
+<body>
+	<div class="body-wrap">
+		<div class="menu">
+			<div class="nav__call">
+				<a href="#" class="nav__tel">
+					+ Связаться со мной
+				</a>
+				<a href="tel:+74955068323" class="nav__num">
+					+7 495 506-83-23
+				</a>
+				<a href="tel:+74955068323" class="nav__num">
+					+7 495 506-83-23
+				</a>
+			</div>
+		</div>
+		<header class="header" id="header">
+			<nav class="nav">
+				<div class="nav__top">
+					<div class="container">
+						<div class="nav__row q">
+							<div class="nav__local">
+								<div class="nav__select">
+									Все клиники <img src="img/down-arrow.svg" alt="" class="svg">
+								</div>
+								<div class="nav__dropdown">
+									<div class="nav__option">Все клиники</div>
+									<div class="nav__option">Клиника №1</div>
+									<div class="nav__option">Клиника №2</div>
+									<div class="nav__option">Клиника №3</div>
+								</div>
+								<p>
+									Адреса клиник в Москве
+								</p>
+							</div>
+							<div class="nav__btns q">
+								<a href="#" class="btn btn_2">
+									Вызвать врача на дом
+								</a>
+								<a href="#" class="btn btn_2">
+									Онлайн-оплата
+								</a>
+							</div>
+							<div class="nav__tel">
+								<p>
+									Круглосуточная запись по телефону
+								</p>
+								<a href="tel:+74994029228">
+									+7 (499) 402-92-28
+								</a>
+							</div>
+							<form action="#" class="nav__search">
+								<input type="search" placeholder="Найти врача, услугу, анализ или симптом">
+								<button>
+									<img src="img/search.svg" alt="" class="svg">
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="nav__bottom">
+					<div class="container">
+						<div class="nav__box q">
+							<a href="main.html" class="nav__logo">
+								<img src="img/logo.svg" alt="">
+							</a>
+							<ul class="menu">
+								<li>
+									<a href="#">
+										Диагностика
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Лечение
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Анализы
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Операции
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Врачи
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Акции
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Программы
+									</a>
+								</li>
+								<li class="menu__item menu__item_1">
+									<a class="menu__link" href="#">
+										Посетителям <img src="img/down-arrow.svg" alt="" class="svg">
+									</a>
+
+									<ul class="menu__dropdown">
+										<li><a href="#">Новости</a></li>
+										<li><a href="#">Полезное пациентам</a></li>
+										<li><a href="#">Налоговый вычет</a></li>
+									</ul>
+								</li>
+
+								<li class="menu__item menu__item_2">
+									<a class="menu__link" href="#">
+										О компании
+										<img src="img/down-arrow.svg" alt="" class="svg">
+									</a>
+
+									<ul class="menu__dropdown">
+										<li><a href="#">О клинике</a></li>
+										<li><a href="#">Отзывы пациентов</a></li>
+										<li><a href="#">Истории пациентов</a></li>
+										<li><a href="#">Лицензии</a></li>
+										<li><a href="#">Вакансии</a></li>
+										<li><a href="#">Контакты клиники</a></li>
+									</ul>
+								</li>
+							</ul>
+							<a href="#" class="nav__link btn">
+								Записаться на приём
+							</a>
+							<button class="side-menu__btn" type="button">
+							</button>
+							<div class="side-menu__overlay"></div>
+							<div class="side-menu">
+								<div class="side-menu__body">
+									<nav class="side-menu__nav">
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Диагностика
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Лечение
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Анализы
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Операции
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Врачи
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Акции
+											</a>
+										</div>
+
+										<div class="side-menu__item">
+											<a class="side-menu__link" href="#">
+												Программы
+											</a>
+										</div>
+
+
+										<div class="side-menu__item">
+
+											<a class="side-menu__link" href="#">
+												<span>Посетителям</span>
+												<img src="img/down-arrow.svg" alt="" class="svg">
+											</a>
+
+											<ul class="side-menu__dropdown">
+												<li>
+													<a href="#">Новости</a>
+												</li>
+												<li>
+													<a href="#">Полезное пациентам</a>
+												</li>
+												<li>
+													<a href="#">Налоговый вычет</a>
+												</li>
+											</ul>
+
+										</div>
+
+
+										<div class="side-menu__item">
+
+											<a class="side-menu__link" href="#">
+												<span>О компании</span>
+												<img src="img/down-arrow.svg" alt="" class="svg">
+											</a>
+
+											<ul class="side-menu__dropdown">
+												<li>
+													<a href="#">О клинике</a>
+												</li>
+												<li>
+													<a href="#">Отзывы пациентов</a>
+												</li>
+												<li>
+													<a href="#">Истории пациентов</a>
+												</li>
+												<li>
+													<a href="#">Лицензии</a>
+												</li>
+												<li>
+													<a href="#">Вакансии</a>
+												</li>
+												<li>
+													<a href="#">Контакты клиники</a>
+												</li>
+											</ul>
+
+										</div>
+
+									</nav>
+									<div class="footer__socials q">
+										<a href="#" target="_blank">
+											<img src="img/soc1.svg" alt="" class="svg">
+										</a>
+										<a href="#" target="_blank">
+											<img src="img/soc2.svg" alt="" class="svg">
+										</a>
+										<a href="#" target="_blank">
+											<img src="img/soc3.svg" alt="" class="svg">
+										</a>
+										<a href="#" target="_blank">
+											<img src="img/soc4.svg" alt="" class="svg">
+										</a>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<section class="news-item sec" id="news-item">
+			<div class="container">
+				<div class="bread">
+					<a href="#">
+						Главная
+					</a>
+					<a href="#">
+						Новости
+					</a>
+					<p>
+						Операция по удалению паховой грыжи
+					</p>
+				</div>
+				<div class="news-item__top">
+					<div class="news-item__content">
+						<div class="news-item__flex">
+							<p>
+								Подкасты
+							</p>
+							<span>
+								26 июня 2026
+							</span>
+						</div>
+						<h1>
+							Всё в твоих руках
+						</h1>
+						<div class="news-item__text">
+							<p>
+								Почему кисть называют «суперкаром», а мы часто относимся к ней как к трактору? Как офисная работа, телефон и неправильная посадка за компьютером приводят к боли, онемению и слабости в руке? И что делать, если травма случилась внезапно?
+							</p>
+							<p>
+								В новом эпизоде подробно разбираем все, что связано с кистью: от синдрома карпального канала и боли в большом пальце до реплантации, ортезирования и реконструктивной хирургии.
+							</p>
+						</div>
+					</div>
+					<a href="#" class="news-item__video" data-video="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+						<img src="img/play.svg" alt="" class="svg">
+					</a>
+				</div>
+				<div class="news-item__experts">
+					<h2>
+						В студии ведущие эксперты
+					</h2>
+					<div class="news-item__row">
+						<div class="news-item__block">
+							<img src="img/expert.png" alt="">
+							<h3>
+								Штерн  <br>
+								Марина Владимировна
+							</h3>
+							<p>
+								Доктор медицинских наук, невролог, психиатр
+							</p>
+							<span>
+								Главный врач клиник на Ленинском пр. 90 и 146
+							</span>
+							<a href="#" class="btn btn_2">
+								Подробнее о враче
+							</a>
+						</div>
+						<div class="news-item__block">
+							<img src="img/expert.png" alt="">
+							<h3>
+								Касымов  <br>
+								Эраш Бахтирович
+							</h3>
+							<p>
+								Кистевой хирург, травматолог-ортопед.
+							</p>
+							<a href="#" class="btn btn_2">
+								Подробнее о враче
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="news-item__info">
+					<h2>
+						В этом выпуске вы узнаете:
+					</h2>
+					<ul>
+						<li>
+							Кисть как сложная система: Почему в кисти важен каждый миллиметр, как связаны суставы, сухожилия, мышцы и нервы, и почему восстановление после травм требует времени и реабилитации.
+						</li>
+						<li>
+							Офис, компьютер и телефон: Как неправильная посадка, мышка, клавиатура и длительное использование смартфона могут приводить к боли, онемению, воспалению сухожилий, синдрому карпального канала и болезни Де Кервена.
+						</li>
+						<li>
+							Топ профилактики: Как правильно организовать рабочее место, где должен находиться монитор, зачем нужны коврики с поддержкой кисти и почему важно следить за положением плеч, локтей и шеи.
+						</li>
+						<li>
+							Когда идти к кистевому хирургу: Какие симптомы нельзя игнорировать — боль, онемение, мурашки, слабость хвата, дискомфорт при движении большого пальца или локтя.
+						</li>
+						<li>
+							Три простых теста: Как тест Финкельштейна, тест Фалена и проверка боли в области локтя могут подсказать, что пора обратиться к специалисту.
+						</li>
+						<li>
+							Гаджеты и большой палец: Почему частая работа большим пальцем по экрану может вызывать воспаление сухожилий, артроз основания большого пальца и в тяжелых случаях приводить к хирургическому лечению.
+						</li>
+						<li>
+							Контрактура Дюпюитрена и ортезирование: Почему пальцы могут постепенно сгибаться, какие есть методы лечения и чем современные индивидуальные ортезы отличаются от обычного гипса.
+						</li>
+						<li>
+							Экстренные ситуации: Что делать при ампутации пальца, почему нельзя класть его прямо в лед и как работает правило трех пакетов.
+						</li>
+						<li>
+							Реплантация и реконструктивная хирургия: Можно ли пришить палец обратно, почему время имеет решающее значение и какие возможности сегодня есть у современной кистевой хирургии.
+						</li>
+					</ul>
+					<p>
+						<span>Главный вывод выпуска:</span>	 Кисть ежедневно выполняет огромную работу, но ее боль, онемение и слабость нельзя считать нормой. Чем раньше обратиться к специалисту, тем выше шанс сохранить функцию руки без сложного лечения и длительных последствий.
+					</p>
+					<p>Смотрите и слушайте прямо сейчас!</p>
+				</div>
+				<div class="news-item__links">
+					<a href="#" target="_blank">
+						<img src="img/social1.svg" alt="">
+						<p>
+							Смотреть <br>
+							на VK Видео
+						</p>
+					</a>
+					<a href="#" target="_blank">
+						<img src="img/social2.svg" alt="">
+						<p>
+							Смотреть  <br>
+							в Telegram
+						</p>
+					</a>
+					<a href="#" target="_blank">
+						<img src="img/social3.svg" alt="">
+						<p>
+							Смотреть <br>
+							на Rutube
+						</p>
+					</a>
+					<a href="#" target="_blank">
+						<img src="img/social4.svg" alt="">
+						<p>
+							Смотреть <br>
+							на Дзен
+						</p>
+					</a>
+				</div>
+			</div>
+		</section>
+		<section class="art art-news" id="art">
+			<div class="container">
+				<div class="news__top">
+					<h2>
+						Другие выпуски
+					</h2>
+					<div class="news__area q">
+						<div class="arrows">
+							<div class="swiper-button-prev4 arrow">
+								<img src="img/left.svg" alt="" class="svg">
+							</div>
+							<div class="swiper-button-next4 arrow">
+								<img src="img/right.svg" alt="" class="svg">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper4">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="#">
+								<div class="art__block">
+									<img src="img/image2.svg" alt="">
+									<img src="img/link2.svg" alt="" class="svg">
+								</div>
+								<div class="news__row q">
+									<p>
+										12 июня 2026
+									</p>
+									<span>
+										Подкасты
+									</span>
+								</div>
+								<h3>
+									Столичный подкаст | У меня болит живот
+								</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="local" id="local">
+			<div class="container">
+				<div class="local__row">
+
+					<div class="local__item">
+						<div class="local__select">
+							<span>Выберите ближайшую станцию метро</span>
+							<img src="img/down-arrow.svg" alt="">
+						</div>
+
+						<div class="local__dropdown">
+							<div class="local__search">
+								<input type="text" placeholder="Найти станцию метро">
+								<button type="button">
+									<img src="img/search.svg" alt="" class="svg">
+								</button>
+							</div>
+
+							<div class="local__list">
+
+								<label class="local__option orange">
+									<input type="radio" name="metro" value="Бабушкинская">
+									<span>
+										<img src="img/local.svg" alt="" class="svg">
+										Бабушкинская</span>
+								</label>
+
+								<label class="local__option orange">
+									<input type="radio" name="metro" value="Беляево">
+									<span>
+										<img src="img/local.svg" alt="" class="svg">
+										Беляево</span>
+								</label>
+
+								<label class="local__option green">
+									<input type="radio" name="metro" value="Новаторская">
+									<span>
+										<img src="img/local.svg" alt="" class="svg">
+										Новаторская</span>
+								</label>
+
+								<label class="local__option blue">
+									<input type="radio" name="metro" value="Смоленская">
+									<span>
+										<img src="img/local.svg" alt="" class="svg">
+										Смоленская</span>
+								</label>
+
+								<label class="local__option red">
+									<input type="radio" name="metro" value="Юго-Западная">
+									<span>
+										<img src="img/local.svg" alt="" class="svg">
+										Юго-Западная</span>
+								</label>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="local__item">
+						<div class="local__select">
+							<span>Выберите процедуру или направление</span>
+							<img src="img/down-arrow.svg" alt="">
+						</div>
+
+						<div class="local__dropdown">
+							<div class="local__search">
+								<input type="text" placeholder="Найти процедуру или направление">
+								<button type="button">
+									<img src="img/search.svg" alt="" class="svg">
+								</button>
+							</div>
+
+							<div class="local__list">
+
+								<label class="local__option">
+									<input type="radio" name="procedure" value="Биопсия">
+									<span>Биопсия</span>
+								</label>
+
+								<label class="local__option">
+									<input type="radio" name="procedure" value="Гинекология">
+									<span>Гинекология</span>
+								</label>
+
+								<label class="local__option">
+									<input type="radio" name="procedure" value="Лечение бесплодия">
+									<span>Лечение бесплодия</span>
+								</label>
+
+								<label class="local__option">
+									<input type="radio" name="procedure" value="УЗИ">
+									<span>УЗИ</span>
+								</label>
+
+								<label class="local__option">
+									<input type="radio" name="procedure" value="ЭКО">
+									<span>ЭКО</span>
+								</label>
+								<label class="local__option">
+									<input type="radio" name="procedure" value="ЭКО">
+									<span>ЭКО</span>
+								</label>
+								<label class="local__option">
+									<input type="radio" name="procedure" value="ЭКО">
+									<span>ЭКО</span>
+								</label>
+								<label class="local__option">
+									<input type="radio" name="procedure" value="ЭКО">
+									<span>ЭКО</span>
+								</label>
+								<label class="local__option">
+									<input type="radio" name="procedure" value="ЭКО">
+									<span>ЭКО</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					<button class="btn btn_2">
+						Искать клинику
+					</button>
+
+				</div>
+			</div>
+		</section>
+		<footer class="footer" id="footer">
+			<div class="container">
+				<div class="footer__top q">
+					<div class="nav__local">
+						<div class="nav__select">
+							Все клиники <img src="img/down-arrow.svg" alt="" class="svg">
+						</div>
+						<div class="nav__dropdown">
+							<div class="nav__option">Все клиники</div>
+							<div class="nav__option">Клиника №1</div>
+							<div class="nav__option">Клиника №2</div>
+							<div class="nav__option">Клиника №3</div>
+						</div>
+						<p>
+							Адреса клиник в Москве
+						</p>
+					</div>
+					<p class="footer__el">
+						А+
+					</p>
+				</div>
+				<div class="footer__flex q">
+					<img src="img/f-logo.svg" alt="">
+					<div class="footer__info q">
+						<div class="footer__per">
+							<p>
+								Почта:
+							</p>
+							<a href="mailto:stolica.28121@stomed.info">
+								stolica.28121@stomed.info
+							</a>
+						</div>
+						<div class="footer__per">
+							<p>
+								Круглосуточная запись по телефону:
+							</p>
+							<a href="tel:+74994029228">
+								+7 (499) 402-92-28
+							</a>
+						</div>
+						<a href="#" class="footer__btn btn">
+							Записаться на прием
+						</a>
+					</div>
+				</div>
+				<div class="footer__row q">
+					<div class="footer__left">
+						<div class="footer__socials q">
+							<a href="#" target="_blank">
+								<img src="img/soc1.svg" alt="" class="svg">
+							</a>
+							<a href="#" target="_blank">
+								<img src="img/soc2.svg" alt="" class="svg">
+							</a>
+							<a href="#" target="_blank">
+								<img src="img/soc3.svg" alt="" class="svg">
+							</a>
+							<a href="#" target="_blank">
+								<img src="img/soc4.svg" alt="" class="svg">
+							</a>
+						</div>
+						<div class="footer__links">
+							<a href="#" download="">
+								Скачать прайс-лист
+							</a>
+							<a href="#">
+								Договор оферты
+							</a>
+							<a href="#">
+								Политика конфиденциальности
+							</a>
+						</div>
+					</div>
+					<div class="footer__right">
+						<div class="footer__item">
+							<p>
+								О компании
+							</p>
+							<ul>
+								<li>
+									<a href="#">
+										О клинике
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Отзывы пациентов
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Истории пациентов
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Врачи
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Лицензии
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Вакансии
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="footer__item">
+							<p>
+								Услуги
+							</p>
+							<ul>
+								<li>
+									<a href="#">
+										Диагностика
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Лечение
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Анализы
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Операции
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Программы и абонементы
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Вызов врача на дом
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="footer__item">
+							<p>
+								Посетителям
+							</p>
+							<ul>
+								<li>
+									<a href="#">
+										Новости
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Акции
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Полезное пациентам
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Налоговый вычет
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Контакты клиники
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Онлайн-оплата
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="footer__set q">
+					<div class="footer__logos q">
+						<img src="img/logo1.svg" alt="">
+						<img src="img/logo2.svg" alt="">
+						<img src="img/logo3.svg" alt="">
+						<img src="img/logo4.svg" alt="">
+					</div>
+					<p>
+						Цены на услуги, указанные на сайте, могут отличаться от фактических, уточняйте в контакт-центре информацию.
+					</p>
+				</div>
+			</div>
+			<div class="footer__bottom">
+				<div class="container">
+					<div class="footer__area q">
+						<p class="footer__text">
+							© 2006-2026 <br>
+							ООО Медицинский центр «СТОЛИЦА» <br>
+							ООО "СТОЛИЦА ЗДОРОВЬЯ"
+						</p>
+						<div class="footer__block">
+							<p>
+								Материалы, размещенные на данном сайте, носят информационный характер и не являются публичной офертой. Получите консультацию специалистов по оказываемым медицинским услугам. <br>
+								Лицензия № Л041-01137-77/00368437 от 18.08.2020. Ленинский проспект, д. 90 Ленинский проспект, д. 146 Большой Власьевский пер., д. 9 ул. Летчика Бабушкина, д. 48 Б. ИНН 7736529149, ОГРН 1057748546800.
+							</p>
+							<p>
+								Лицензия № Л041-01137-77/00615931 от 12.09.2022. ул. Профсоюзная, д. 114. ИНН 9728034636, ОРГН 1217700181577.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		</div>
+	<script type="text/javascript">
+		ymaps.ready(init);
+
+		function init() {
+			var myMap = new ymaps.Map("map", {
+				// Центр карты, указываем коордианты
+				center: [55.807602, 37.635422],
+				// Масштаб, тут все просто
+				zoom: 14,
+				// Отключаем все элементы управления
+				controls: []
+			});
+
+			var myGeoObjects = [];
+
+			// Наша метка, указываем коордианты
+			myGeoObjects = new ymaps.Placemark([55.807602, 37.635422], {
+				balloonContentBody: 'BETON',
+			}, {
+				iconLayout: 'default#image',
+				// Путь до нашей картинки
+				iconImageHref: 'img/map.svg',
+				// Размер по ширине и высоте
+				iconImageSize: [136, 136],
+				// Смещение левого верхнего угла иконки относительно
+				// её «ножки» (точки привязки).
+				iconImageOffset: [-35, -35]
+			});
+
+			var clusterer = new ymaps.Clusterer({
+				clusterDisableClickZoom: false,
+				clusterOpenBalloonOnClick: false,
+			});
+
+			clusterer.add(myGeoObjects);
+			myMap.geoObjects.add(clusterer);
+			// Отлючаем возможность изменения масштаба
+			myMap.behaviors.disable('scrollZoom');
+
+		}
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script src="js/glightbox.min.js"></script>
+	<script src="js/all.js"></script>
+</body>
+
+</html>
