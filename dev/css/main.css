@@ -3444,6 +3444,7 @@ input:-moz-placeholder {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
+  color: #053C5B;
 }
 
 .about-info {
