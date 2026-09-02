@@ -408,67 +408,518 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('resize', changePlaceholder);
 });
 document.addEventListener('DOMContentLoaded', () => {
-	const tabs = document.querySelectorAll('.tabs__pane');
 
-	tabs.forEach(tab => {
-		const isFirstTab = tab.classList.contains('info__tab--first');
+  const salesItems = document.querySelectorAll('.sales-main__item');
 
-		const infoItems = tab.querySelectorAll('.info__item');
+  salesItems.forEach(item => {
 
-		infoItems.forEach(item => {
-			const list = item.querySelector('ul');
-			const items = item.querySelectorAll('ul li');
-			const arrow = item.querySelector('.info__arrow');
+    const info = item.querySelector('.sales-main__info');
+    const list = item.querySelector('ul');
+    const items = item.querySelectorAll('ul li');
 
-			if (!list || !items.length || !arrow) return;
+    if (!info || !list || !items.length) return;
 
-			// Если элементов 3 или меньше — стрелка не нужна
-			if (items.length <= 3) {
-				arrow.style.display = 'none';
-				return;
-			}
 
-			// Первый таб:
-			// показываем первые 3, остальные скрываем
-			if (isFirstTab) {
-				items.forEach((li, index) => {
-					if (index >= 3) {
-						li.style.display = 'none';
-					}
-				});
-			}
+    // =====================================================
+    // ЕСЛИ ЭЛЕМЕНТОВ 3 ИЛИ МЕНЬШЕ
+    // =====================================================
 
-			// Остальные табы:
-			// скрываем весь список
-			else {
-				items.forEach(li => {
-					li.style.display = 'none';
-				});
-			}
+    if (items.length <= 3) {
+      return;
+    }
 
-			// Клик по стрелке
-			arrow.addEventListener('click', () => {
-				const isOpen = item.classList.toggle('active');
 
-				if (isFirstTab) {
-					// Первый таб:
-					// первые 3 всегда видны,
-					// остальные открываются
-					items.forEach((li, index) => {
-						if (index >= 3) {
-							li.style.display = isOpen ? '' : 'none';
-						}
-					});
-				} else {
-					// Остальные табы:
-					// открываем / закрываем весь список
-					items.forEach(li => {
-						li.style.display = isOpen ? '' : 'none';
-					});
-				}
-			});
-		});
-	});
+    // =====================================================
+    // СОЗДАЁМ СТРЕЛКУ
+    // =====================================================
+
+    const arrow = document.createElement('span');
+
+    arrow.classList.add('info__arrow');
+
+
+    // Добавляем стрелку в конец блока
+    info.appendChild(arrow);
+
+
+    // =====================================================
+    // ИЗНАЧАЛЬНО ПОКАЗЫВАЕМ ТОЛЬКО 3 ЭЛЕМЕНТА
+    // =====================================================
+
+    items.forEach((li, index) => {
+
+      if (index >= 3) {
+        li.style.display = 'none';
+      }
+
+    });
+
+
+    // =====================================================
+    // КЛИК ПО СТРЕЛКЕ
+    // =====================================================
+
+    arrow.addEventListener('click', () => {
+
+      const isOpen = item.classList.contains('active');
+
+
+      // ===================================================
+      // ЗАКРЫВАЕМ ВСЕ ОСТАЛЬНЫЕ
+      // ===================================================
+
+      salesItems.forEach(otherItem => {
+
+        if (otherItem === item) return;
+
+        otherItem.classList.remove('active');
+
+        const otherItems =
+          otherItem.querySelectorAll('.sales-main__info ul li');
+
+        const otherArrow =
+          otherItem.querySelector('.info__arrow');
+
+
+        otherItems.forEach((li, index) => {
+
+          if (index >= 3) {
+            li.style.display = 'none';
+          } else {
+            li.style.display = '';
+          }
+
+        });
+
+
+        if (otherArrow) {
+          otherArrow.classList.remove('active');
+        }
+
+      });
+
+
+      // ===================================================
+      // ТЕКУЩИЙ БЛОК
+      // ===================================================
+
+      if (isOpen) {
+
+        // Закрываем
+        item.classList.remove('active');
+        arrow.classList.remove('active');
+
+        items.forEach((li, index) => {
+
+          if (index >= 3) {
+            li.style.display = 'none';
+          } else {
+            li.style.display = '';
+          }
+
+        });
+
+      } else {
+
+        // Открываем
+        item.classList.add('active');
+        arrow.classList.add('active');
+
+        items.forEach(li => {
+          li.style.display = '';
+        });
+
+      }
+
+    });
+
+  });
+
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  // =====================================================
+  // ACCORDION
+  // =====================================================
+
+  const tabs = document.querySelectorAll('.tabs__pane');
+
+  tabs.forEach(tab => {
+    const isFirstTab = tab.classList.contains('info__tab--first');
+    const infoItems = tab.querySelectorAll('.info__item');
+
+    infoItems.forEach(item => {
+      const list = item.querySelector('ul');
+      const items = item.querySelectorAll('ul li');
+      const arrow = item.querySelector('.info__arrow');
+
+      if (!list || !items.length || !arrow) return;
+
+      // Если элементов 3 или меньше — стрелка не нужна
+      if (items.length <= 3) {
+        arrow.style.display = 'none';
+        return;
+      }
+
+      // Первый таб — показываем первые 3 элемента
+      if (isFirstTab) {
+        items.forEach((li, index) => {
+          if (index >= 3) {
+            li.style.display = 'none';
+          }
+        });
+      }
+
+      // Остальные табы — скрываем весь список
+      else {
+        items.forEach(li => {
+          li.style.display = 'none';
+        });
+      }
+
+      // Клик по стрелке
+      arrow.addEventListener('click', () => {
+        const wrap = item.closest('.info__wrap');
+        const isOpen = item.classList.contains('active');
+
+        // Закрываем все остальные блоки
+        if (wrap) {
+          const allItems = wrap.querySelectorAll('.info__item');
+
+          allItems.forEach(otherItem => {
+            if (otherItem !== item) {
+
+              otherItem.classList.remove('active');
+
+              const otherItems = otherItem.querySelectorAll('ul li');
+
+              otherItems.forEach((li, index) => {
+                if (isFirstTab && index < 3) {
+                  li.style.display = '';
+                } else {
+                  li.style.display = 'none';
+                }
+              });
+
+            }
+          });
+        }
+
+        // Открываем / закрываем текущий блок
+        if (isOpen) {
+
+          item.classList.remove('active');
+
+          if (isFirstTab) {
+            items.forEach((li, index) => {
+              li.style.display = index < 3 ? '' : 'none';
+            });
+          } else {
+            items.forEach(li => {
+              li.style.display = 'none';
+            });
+          }
+
+        } else {
+
+          item.classList.add('active');
+
+          items.forEach(li => {
+            li.style.display = '';
+          });
+
+        }
+
+        // Проверяем наличие открытого блока
+        if (wrap) {
+          const hasActive = wrap.querySelector('.info__item.active');
+          wrap.classList.toggle('has-active', !!hasActive);
+        }
+
+      });
+
+    });
+
+  });
+
+
+  // =====================================================
+  // ФИЛЬТРЫ + ПОИСК — #PROG
+  // =====================================================
+
+  const progSection = document.querySelector('#prog');
+
+  if (progSection) {
+
+    const filterButtons = progSection.querySelectorAll(
+      '.prog__filters .btn'
+    );
+
+    const searchForm = progSection.querySelector('.nav__search');
+
+    const searchInput = searchForm
+      ? searchForm.querySelector('input[type="search"]')
+      : null;
+
+    const infoItems = progSection.querySelectorAll('.info__item');
+
+
+    // Проверяем совпадение с поиском
+    function matchesProgSearch(item, query) {
+
+      if (!query) {
+        return true;
+      }
+
+      // Ищем по всему содержимому блока
+      const text = item.textContent
+        .trim()
+        .toLowerCase();
+
+      return text.includes(query);
+    }
+
+
+    // Получаем активную кнопку
+    function getActiveProgFilter() {
+
+      let activeIndex = 0;
+
+      filterButtons.forEach((button, index) => {
+
+        if (button.classList.contains('active')) {
+          activeIndex = index;
+        }
+
+      });
+
+      return activeIndex;
+    }
+
+
+    // Применяем фильтр + поиск
+    function applyProgFilter() {
+
+      const activeFilter = getActiveProgFilter();
+
+      const query = searchInput
+        ? searchInput.value
+            .trim()
+            .toLowerCase()
+        : '';
+
+
+      infoItems.forEach(item => {
+
+        let matchesFilter = true;
+
+
+        // -----------------------------------------------
+        // ВСЕ ПРОГРАММЫ
+        // -----------------------------------------------
+
+        if (activeFilter === 0) {
+          matchesFilter = true;
+        }
+
+
+        // -----------------------------------------------
+        // ПРОГРАММЫ ПО НАПРАВЛЕНИЯМ
+        // -----------------------------------------------
+
+        if (activeFilter === 1) {
+
+          matchesFilter =
+            item.dataset.category === 'direction';
+
+        }
+
+
+        // -----------------------------------------------
+        // ПОИСК
+        // -----------------------------------------------
+
+        const matchesSearch =
+          matchesProgSearch(item, query);
+
+
+        // -----------------------------------------------
+        // ПОКАЗЫВАЕМ / СКРЫВАЕМ
+        // -----------------------------------------------
+
+        if (matchesFilter && matchesSearch) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+
+      });
+
+    }
+
+
+    // Кнопки фильтра
+    filterButtons.forEach(button => {
+
+      button.addEventListener('click', event => {
+
+        event.preventDefault();
+
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+
+        button.classList.add('active');
+
+        applyProgFilter();
+
+      });
+
+    });
+
+
+    // Поиск
+    if (searchInput) {
+
+      searchInput.addEventListener('input', () => {
+        applyProgFilter();
+      });
+
+    }
+
+
+    // Submit формы
+    if (searchForm) {
+
+      searchForm.addEventListener('submit', event => {
+
+        event.preventDefault();
+
+        applyProgFilter();
+
+      });
+
+    }
+
+  }
+
+
+  // =====================================================
+  // ПОИСК — #DIAGNOSTICS
+  // =====================================================
+
+  const diagnosticsSection =
+    document.querySelector('#diagnostics');
+
+  if (diagnosticsSection) {
+
+    const searchForms =
+      diagnosticsSection.querySelectorAll('.nav__search');
+
+
+    searchForms.forEach(searchForm => {
+
+      const searchInput =
+        searchForm.querySelector('input[type="search"]');
+
+
+      if (!searchInput) {
+        return;
+      }
+
+
+      // -----------------------------------------------
+      // Находим все блоки для поиска
+      // -----------------------------------------------
+
+      const infoItems =
+        diagnosticsSection.querySelectorAll('.info__item');
+
+
+      // -----------------------------------------------
+      // Функция поиска
+      // -----------------------------------------------
+
+      function applyDiagnosticsSearch() {
+
+        const query =
+          searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+        infoItems.forEach(item => {
+
+          // Берём ВСЁ текстовое содержимое блока
+          //
+          // Например:
+          // h3
+          // li
+          // a
+          // span
+          // и т.д.
+
+          const text =
+            item.textContent
+              .trim()
+              .toLowerCase();
+
+
+          // Пустой поиск — показываем всё
+          if (!query) {
+
+            item.style.display = '';
+
+            return;
+          }
+
+
+          // Есть совпадение — показываем
+          if (text.includes(query)) {
+
+            item.style.display = '';
+
+          }
+
+          // Нет совпадения — скрываем
+          else {
+
+            item.style.display = 'none';
+
+          }
+
+        });
+
+      }
+
+
+      // -----------------------------------------------
+      // Поиск во время ввода
+      // -----------------------------------------------
+
+      searchInput.addEventListener('input', () => {
+
+        applyDiagnosticsSearch();
+
+      });
+
+
+      // -----------------------------------------------
+      // Submit формы
+      // -----------------------------------------------
+
+      searchForm.addEventListener('submit', event => {
+
+        event.preventDefault();
+
+        applyDiagnosticsSearch();
+
+      });
+
+    });
+
+  }
+
 });
 document.addEventListener('DOMContentLoaded', () => {
 	const selects = document.querySelectorAll('.nav__select');
@@ -526,152 +977,285 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 document.addEventListener('DOMContentLoaded', function () {
+
+  // ========================================
+  // SWIPER 1
+  // ========================================
   const swiper1 = new Swiper('.swiper1', {
     slidesPerView: 1,
     loop: true,
     spaceBetween: 0,
+
     pagination: {
-      el: ".swiper-pagination1",
+      el: '.swiper-pagination1',
+      clickable: true,
     },
+
     navigation: {
       nextEl: '.swiper-button-next1',
       prevEl: '.swiper-button-prev1',
     },
+
     breakpoints: {
-      // when window width is >= 320px
       320: {
+        slidesPerView: 1,
         spaceBetween: 0,
-        loop: true,
-        slidesPerView: 1
       },
       767: {
+        slidesPerView: 1,
         spaceBetween: 0,
-        slidesPerView: 1
       },
       992: {
+        slidesPerView: 1,
         spaceBetween: 0,
-        slidesPerView: 1
       },
       1200: {
+        slidesPerView: 1,
         spaceBetween: 0,
-        slidesPerView: 1
-      }
-    }
-  });
-  const swiper2 = new Swiper('.swiper2', {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '.swiper-button-next2',
-      prevEl: '.swiper-button-prev2',
-    },
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        spaceBetween: 10,
-        loop: true,
-        slidesPerView: 1
-      },
-      767: {
-        spaceBetween: 20,
-        slidesPerView: 2
-      },
-      992: {
-        spaceBetween: 20,
-        slidesPerView: 2
-      },
-      1200: {
-        spaceBetween: 20,
-        slidesPerView: 4
-      }
-    }
-  });
-  const swiper3 = new Swiper('.swiper3', {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '.swiper-button-next3',
-      prevEl: '.swiper-button-prev3',
-    },
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        spaceBetween: 10,
-        loop: true,
-        slidesPerView: 1
-      },
-      767: {
-        spaceBetween: 10,
-        slidesPerView: 2
-      },
-      992: {
-        spaceBetween: 20,
-        slidesPerView: 3
-      },
-      1200: {
-        spaceBetween: 20,
-        slidesPerView: 3
-      }
-    }
-  });
-  const swiper4 = new Swiper('.swiper4', {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '.swiper-button-next4',
-      prevEl: '.swiper-button-prev4',
-    },
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        spaceBetween: 10,
-        loop: true,
-        slidesPerView: 1
-      },
-      767: {
-        spaceBetween: 20,
-        slidesPerView: 2
-      },
-      992: {
-        spaceBetween: 20,
-        slidesPerView: 3
-      },
-      1200: {
-        spaceBetween: 20,
-        slidesPerView: 4
-      }
-    }
-  });
-  const swiper44 = new Swiper('.art-sales .swiper4', {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '.swiper-button-next4',
-      prevEl: '.swiper-button-prev4',
-    },
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        spaceBetween: 10,
-        loop: true,
-        slidesPerView: 1
-      },
-      767: {
-        spaceBetween: 20,
-        slidesPerView: 2
-      },
-      992: {
-        spaceBetween: 20,
-        slidesPerView: 3
-      },
-      1300: {
-        spaceBetween: 20,
-        slidesPerView: 4
       }
     }
   });
 
+
+  // ========================================
+  // SWIPER 2
+  // ========================================
+  const swiper2 = new Swiper('.swiper2', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+
+    navigation: {
+      nextEl: '.swiper-button-next2',
+      prevEl: '.swiper-button-prev2',
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+      },
+      767: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1200: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      }
+    }
+  });
+
+
+  // ========================================
+  // SWIPER 3
+  // ========================================
+  const swiper3 = new Swiper('.swiper3', {
+    slidesPerView: 3,
+    spaceBetween: 20,
+
+    navigation: {
+      nextEl: '.swiper-button-next3',
+      prevEl: '.swiper-button-prev3',
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+      },
+      767: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      }
+    }
+  });
+
+
+  // ========================================
+  // SWIPER 4
+  // ========================================
+  const swiper4 = new Swiper('.swiper4', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+
+    navigation: {
+      nextEl: '.swiper-button-next4',
+      prevEl: '.swiper-button-prev4',
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+      },
+      767: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+      1200: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      }
+    }
+  });
+
+
+  // ========================================
+  // SWIPER 4 ДЛЯ ART-SALES
+  // ========================================
+  const swiper44 = new Swiper('.art-sales .swiper4', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+
+    navigation: {
+      nextEl: '.swiper-button-next4',
+      prevEl: '.swiper-button-prev4',
+    },
+
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+      },
+      767: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+      1300: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      }
+    }
+  });
+
+
+  // ========================================
+  // CONTACTS SWIPERS
+  // ========================================
+  document.querySelectorAll('.swiper-contacts').forEach(function (slider) {
+
+    const pagination = slider.querySelector('.pagination1');
+
+    new Swiper(slider, {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+
+      speed: 500,
+
+      grabCursor: true,
+    });
+
+  });
+
 });
+document.addEventListener('DOMContentLoaded', () => {
+  let patientSwiper = null
+  let newsSwiper = null
+
+  function initPatientSwiper() {
+    const width = window.innerWidth
+
+    if (width >= 767 && width < 1300) {
+      if (!patientSwiper) {
+        patientSwiper = new Swiper('.patient__row', {
+          slidesPerView: 4,
+          spaceBetween: 20,
+          loop: false,
+
+          navigation: {
+            nextEl: '.patient__next',
+            prevEl: '.patient__prev'
+          }
+        })
+      }
+    } else {
+      if (patientSwiper) {
+        patientSwiper.destroy(true, true)
+        patientSwiper = null
+      }
+    }
+  }
+
+
+  function initNewsSwiper() {
+    if (window.innerWidth < 1300) {
+      if (!newsSwiper) {
+        newsSwiper = new Swiper('.news-item__row', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: false,
+
+          breakpoints: {
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            }
+          },
+
+          navigation: {
+            nextEl: '.news-item__next',
+            prevEl: '.news-item__prev'
+          }
+        })
+      }
+    } else {
+      if (newsSwiper) {
+        newsSwiper.destroy(true, true)
+        newsSwiper = null
+      }
+    }
+  }
+
+
+  function initSliders() {
+    initPatientSwiper()
+    initNewsSwiper()
+  }
+
+
+  initSliders()
+
+
+  let resizeTimer
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer)
+
+    resizeTimer = setTimeout(() => {
+      initSliders()
+    }, 150)
+  })
+})
 document.addEventListener('DOMContentLoaded', function () {
 
 	const selects = document.querySelectorAll('.date-select');

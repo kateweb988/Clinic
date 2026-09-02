@@ -14,6 +14,10 @@
    .info .tabs__pane:nth-child(2), .info .tabs__pane:nth-child(3), .info .tabs__pane:nth-child(4), .info .tabs__pane:nth-child(5)
       .info__item
          width: 17.8%
+   .diagnostics .tabs__pane .info__item
+      width: 18.7%
+   .diagnostics__row .nav__search
+      max-width: 75%
    .info__item h3
       font-size: 19px
    .about__pic
@@ -42,6 +46,22 @@
       width: 620px
    .vacan__item
       width: 32.2%
+   .vacan-item__content
+      max-width: 700px
+   .patient__item
+      width: 18.7%
+   .docs__item
+      width: 614px
+   .docs__block:nth-child(2n)
+      width: 610px
+   .contacts-head__block
+      padding: 30px
+   .contacts-head__row
+      gap: 50px
+   .contacts__rev a
+      width: 110px
+   .prog .diagnostics__row .nav__search
+      max-width: 869px
 @media screen and (max-width: 1300px)
    .side-menu, .side-menu__overlay
       top: 157px
@@ -137,6 +157,7 @@
          height: 36px
          font-size: 13px
    .main__item
+      padding-top: 23px
       height: 80px   
    .main__area img
       width: 30px
@@ -184,6 +205,12 @@
       h3 
          font-size: 17px
          line-height: 21px
+   .diagnostics .tabs__pane .info__item
+      width: 23.3%
+   .diagnostics__row .nav__search
+      order: 1
+   .diagnostics__row .order__select
+      order: 2
    .order__wrap
       padding: 40px
       flex-direction: column
@@ -349,7 +376,161 @@
          width: 48% !important
    .vacan__options
       margin: 30px 0
+   .vacan-item__content
+      max-width: 440px
+   .vacan-item__form .order__form input
+      width: 100% !important
+   .vacan-item__wrap
+      padding-bottom: 428px
+      position: relative
+   .vacan-item #map
+      height: 435px
+      position: absolute
+      bottom: 0
+      left: 0
+   .about-page .main__btns
+      margin-top: 70px
+   .about-page .main__wrap .swiper1 .swiper-slide p
+      max-width: 491px
+   .about-page .main__wrap .swiper1 .swiper-slide
+      padding: 30px 40px
+      h1 
+         margin-bottom: 20px
+   .about-page .main__wrap .swiper1 .swiper-slide img
+      width: 337px
+      height: auto
+      right: 40px
+   .about-info
+      padding: 50px 0
+   .about-info__right h2
+      font-size: 20px
+      line-height: 24px 
+      margin-bottom: 15px
+   .about-info__right p
+      font-size: 13px
+      line-height: 20px 
+      margin-bottom: 20px
+   .about-info__left img
+      margin-bottom: 20px
+   .patient
+      padding: 50px 0
+   .patient__wrapper, .about-info .news-item__wrapper
+      flex-wrap: nowrap
+      gap: 0
+   .patient .arrows, .about-info .news-item__experts .arrows
+      display: flex
+      position: absolute
+      top: -5px
+      right: 0
+   .about-info .news-item__experts
+      position: relative
+   .patient__item img
+      width: 30px
+      height: 30px
+      margin-bottom: 25px
+   .patient__item p
+      margin-bottom: 20px
+   .news-item__block span
+      width: 100%
+      max-width: 186px
+   .news-item__block p
+      margin-bottom: 15px
+   .news-item__block img
+      height: 355px
+   .docs
+      padding: 50px 0
+   .docs__item
+      .svg
+         width: 20px
+         max-width: 20px
+      p 
+         margin-left: 12px
+         font-size: 13px
+         line-height: 16px
+   .docs__row
+      gap: 20px 0
+   .docs__item 
+      width: 450px
+      align-items: flex-start
+   .docs__row
+      padding-bottom: 40px
+      margin-bottom: 40px
+   .docs__block 
+      width: 459px
+      padding-right: 40px
+   .docs__block:nth-child(2n) 
+      padding-right: 0
+      width: 396px
+   .contacts-head__name
+      font-size: 15px
+   .contacts-head__tel
+      font-size: 30px
+      line-height: 36px
+      margin-bottom: 20px
+   .contacts-head__item p
+      font-size: 13px
+      line-height: 16px 
+      margin-bottom: 4px
+   .contacts-head__item a, .contacts-head__el p, .contacts-head__el a, .contacts-head__info span
+      font-size: 13px
+      line-height: 16px
+   .contacts-head__block:nth-child(2)
+      gap: 37px
+   .contacts-head__row 
+      gap: 30px
+   .contacts-head
+      margin-bottom: 30px
+   .contacts__item
+      margin-bottom: 20px
+      padding: 30px
+   .contacts .swiper-contacts
+      max-width: 382px
+      border-radius: 20px
+      height: 215px
+   .contacts__content
+      padding: 0 0 0 40px
+   .contacts__content h2
+      font-size: 25px 
+      line-height: 30px
+      margin-bottom: 15px
+   .contacts__info .contacts-head__info
+      margin-bottom: 12px
+   .contacts__rev
+      gap: 10px 
+      margin-bottom: 20px
+   .contacts__area
+      height: 8px
+   .contacts__rev a
+      width: 90px
+   .contacts #map
+      margin-top: 100px
+      height: 455px
+   .contacts
+      padding-bottom: 50px
+   .prog .diagnostics__row .nav__search 
+      max-width: 300px
+   .prog .diagnostics__row .order__select
+      display: block
+   .prog-item__pay
+      margin-top: 100px
+   .prog-item .main__btns
+      margin-top: 23px
+   .prog-item, .about-page .main__wrap
+      .main__wrap
+         border-radius: 30px
+         overflow: hidden
+   .prog-item .main__wrap .swiper1 .swiper-slide p span
+      margin-bottom: 0
+   .prog-item .main__wrap .swiper1 .swiper-slide
+      padding: 40px
+   .prog-item .main__wrap .swiper1 .swiper-slide img 
+      width: 360px
+      height: 100%
+      left: initial
+      right: 20px
 @media ( max-width: 950px )
+   .vacan-item
+      padding-bottom: 50px
    .sales-page .tabs
       flex-direction: column
    .bread
@@ -373,7 +554,44 @@
       display: none
    .pay .order__per input, .order__select
       width: 32% !important
+   .diagnostics__row .nav__search
+      max-width: 66%
+   .vacan-item h1
+      margin-bottom: 14px
+   .vacan-item__text
+      margin-bottom: 30px
+   .vacan-item__form h2
+      width: 100%
+      max-width: 300px
+      font-size: 20px
+      line-height: 22px
+   .vacan-item__sub
+      margin-bottom: 30px
+   .contacts-head
+      flex-direction: column
+      gap: 10px
+   .contacts-head__block
+      padding: 30px 20px 
+      width: 100%
+      border-radius: 30px 50px 10px 30px
+   .contacts__item
+      padding: 0
+      margin-bottom: 10px
+      flex-direction: column
+   .contacts .swiper-contacts 
+      max-width: 100%
+      border-radius: 30px
+      height: 197px
+   .contacts__content
+      padding: 20px 20px 30px
+   .contacts__btn
+      width: 100%
+   .contacts__rev a 
+      width: 23.8%
 @media ( max-width: 900px )
+   .diagnostics__row
+      margin: 30px 0 20px
+   
    .nav__select
       font-size: 12px
    .nav__btns
@@ -531,7 +749,111 @@
       bottom: 15px
       right: 15px
       margin: 0
+   .vacan-item__wrap
+      padding-bottom: 0
+      flex-direction: column
+   .vacan-item__form
+      margin-top: 520px
+      max-width: 100% 
+      padding: 40px 20px 20px
+   .vacan-item #map
+      bottom: 506px
+      height: 500px
+   .vacan-item__content
+      max-width: 100%
+   .vacan-item__content ul
+      margin-bottom: 20px
+   .about-page .main__wrap .swiper1 .swiper-slide p
+      max-width: 400px
+   .about-page .main__wrap .swiper1 .swiper-slide img 
+      width: 365px
+      height: auto
+      right: -52px
+   .about-page, .prog-item
+      .main__item
+         width: 48.5%
+   .about-info__row
+      flex-direction: column
+   .about-info__left
+      max-width: 100%
+   .about-info__left img
+      height: 187px
+   .about-info__right
+      max-width: 100%
+   .news-item__block img
+      height: 320px
+   .patient__item p
+      font-size: 15px
+      line-height: 18px
+   .patient__item .svg
+      width: 30px
+      height: 30px
+   .docs h2
+      margin-bottom: 20px
+   .docs__item
+      width: 100%
+   .docs__row
+      padding-bottom: 0
+      border: none
+   .docs__block
+      padding: 0
+      border: none 
+      width: 100% !important
+      margin-bottom: 20px !important
+      &:last-child
+         margin-bottom: 0 !important
+   .docs__flex:first-child
+      padding-bottom: 0
+      margin-bottom: 20px
+      border: none
+   .prog 
+      .diagnostics__row
+         flex-wrap: wrap
+   .prog .diagnostics__row .nav__search, .prog .diagnostics__row .order__select
+      max-width: 100%
+      width: 100% !important
+   .diagnostics__row .nav__search
+      margin: 20px 0 10px
+   .prog-item .main__wrap .swiper1 .swiper-slide img 
+      width: 289px
+      left: initial
+      right: -22px
+   .prog-item__block
+      flex-direction: column 
+      align-items: flex-start
+   .prog-item__block p
+      font-size: 13px
+      line-height: 14px
+      span 
+         font-size: 15px
+         margin-top: 12px
+   .prog-item__block .btn
+      margin-top: 20px
+      width: 100%
 @media screen and (max-width: 767px)
+   .prog__filters a
+      font-size: 10px
+   .diagnostics__row .nav__search 
+      margin: 10px 0 0px
+   .vacan-item__title, .vacan-item__content ul li, .vacan-item__sub
+      font-size: 13px
+      line-height: 20px
+   .vacan-item #map
+      bottom: 495px
+   #vacan-item 
+      padding-bottom: 50px 
+   .vacan-item__form .order__form .btn
+      width: 100%
+   .vacan-item h3.vacan-item__title
+      font-size: 15px
+      line-height: 17px
+      margin-bottom: 20px
+   .diagnostics__row
+      margin-top: 0
+      flex-direction: column
+      gap: 10px
+   .diagnostics__row .nav__search
+      max-width: 100%
    .history-item__btn
       width: 100%
    .history-item .news-item__content h1
@@ -778,6 +1100,47 @@
    .vacan__title
       width: 100%
       max-width: 238px
+   .diagnostics .tabs__pane .info__item
+      h3 
+         font-size: 17px
+         line-height: 22px
+   .vacan-item, .diagnostics
+      padding-bottom: 0
+   .about-page .main__wrap .swiper1 .swiper-slide img 
+      top: 108px
+      width: 283px
+      height: auto
+      right: -52px
+   .about-page .main__item
+      width: 48%
+   .patient .arrows, .about-info .news-item__experts .arrows
+      display: none
+   .patient h2
+      margin-bottom: 20px
+   .about-info .news-item__row
+      overflow: visible
+      width: 80%
+      margin: 0
+   .patient__wrapper
+      flex-wrap: wrap
+      gap: 10px
+   .patient__item 
+      width: 49%
+      &:last-child
+         display: none
+   .contacts__rev a 
+      width: 23.4%
+   .contacts #map
+      display: none
+   .prog-item  .main__wrap .swiper1 .swiper-slide img 
+      top: 108px
+      width: 283px
+      height: auto
+      right: -52px
+   .prog-item .main__wrap .swiper1 .swiper-slide p
+      max-width: 307px
+   .about-page .main__item, .prog-item .main__item 
+      width: 48%
 @media screen and (max-width: 576px)
    .pay__item
       img 
@@ -923,7 +1286,84 @@
          display: block
    .sales-page__row a > img
       height: 262px
+   .about-page, .prog-item
+      .main__wrap .swiper1 .swiper-slide img 
+         top: 0
+         width: 299px
+         height: auto
+         right: 0
+         margin: 0 auto 20px
+         display: block
+   .about-page, .prog-item
+      .main__wrap .swiper1 .swiper-slide
+         padding: 10px 20px 20px
+   .about-page .main__row, .prog-item .main__row
+      gap: 10px
+   .about-page .main__item, .prog-item .main__item
+      width: 100%
+   .about-info__left img
+      margin-bottom: 10px
+   .about-info .news-item__row
+      width: 73%
+   .news-item__block p
+      width: 100%
+      max-width: 200px
+   .news-item__block span
+      margin-bottom: 20px
+   .patient__item
+      width: 48.5%
+   .contacts h1
+      font-size: 25px
+      line-height: 25px 
+      margin-bottom: 20px
+   .contacts-head__name 
+      font-size: 13px
+      line-height: 16px
+   .contacts-head__tel 
+      font-size: 20px
+      line-height: 14px
+      margin-bottom: 24px
+   .contacts-head__row
+      gap: 15px 
+      flex-direction: column
+   .contacts-head__item p
+      margin-bottom: 0
+   .contacts-head__block:nth-child(2) 
+      gap: 20px
+      flex-direction: column
+   .contacts-head__block
+      padding-bottom: 25px
+   .contacts-head__info
+      margin-bottom: 10px
+   .contacts-head__info
+      img 
+         position: relative
+         top: -2px
+      span
+         br 
+            display: none
+   .contacts__content h2 
+      font-size: 20px
+      line-height: 24px
+   .contacts__rev 
+      gap: 10px
+      margin-bottom: 30px
+   .contacts__rev a 
+      width: 48.3%
+   .diagnostics .tabs__pane .info__item h3 
+      font-size: 15px
+      line-height: 18px
+   .diagnostics .tabs__pane .info__item img
+      width: 30px
+   .art-news
+      h2 
+         width: 100%
+         max-width: 300px
 @media screen and (max-width: 370px)
+   .art-news
+      h2 
+         width: 100%
+         max-width: 200px
    .info__item
       width: 48.3% !important
    .info .tabs__pane:nth-child(2) h3, .info .tabs__pane:nth-child(3) h3, .info .tabs__pane:nth-child(4) h3, .info .tabs__pane:nth-child(5) h3
