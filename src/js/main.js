@@ -169,44 +169,6 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-document.addEventListener("DOMContentLoaded", () => {
-  var accordeonButtons = document.getElementsByClassName("accordeon__button");
-
-  //пишем событие при клике на кнопки - вызов функции toggle
-  for (var i = 0; i < accordeonButtons.length; i++) {
-    var accordeonButton = accordeonButtons[i];
-
-    accordeonButton.addEventListener("click", toggleItems, false);
-  }
-
-  //пишем функцию
-  function toggleItems() {
-
-    // переменная кнопки(актульная) с классом
-    var itemClass = this.className;
-
-    // добавляем всем кнопкам класс close
-    for (var i = 0; i < accordeonButtons.length; i++) {
-      accordeonButtons[i].className = "accordeon__button closed";
-    }
-
-    // закрываем все открытые панели с текстом
-    var pannels = document.getElementsByClassName("accordeon__panel");
-    for (var z = 0; z < pannels.length; z++) {
-      pannels[z].style.maxHeight = 0;
-    }
-
-    // проверка. если кнопка имеет класс close при нажатии
-    // к актуальной(нажатой) кнопке добававляем активный класс
-    // а панели - которая находится рядом задаем высоту
-    if (itemClass == "accordeon__button closed") {
-      this.className = "accordeon__button active";
-      var panel = this.nextElementSibling;
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-
-  }
-});
 document.addEventListener('DOMContentLoaded', function () {
   $('.articmodal-close').click(function (e) {
     $.arcticmodal('close');
@@ -538,6 +500,125 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
 
+  const reviewItems = document.querySelectorAll('.rev__item')
+
+  const maxLines = 8
+
+
+  reviewItems.forEach(item => {
+
+    const text = item.querySelector('.rev__text')
+
+    if (!text) return
+
+
+    // =====================================================
+    // ПРОВЕРЯЕМ, НУЖНО ЛИ РАСКРЫТИЕ
+    // =====================================================
+
+    const styles = getComputedStyle(text)
+    const lineHeight = parseFloat(styles.lineHeight)
+
+    if (!lineHeight) return
+
+    const maxHeight = lineHeight * maxLines
+
+
+    // Если текст помещается в 8 строк —
+    // ничего не делаем
+    if (text.scrollHeight <= maxHeight + 1) {
+      return
+    }
+
+
+    // =====================================================
+    // СОЗДАЁМ СТРЕЛКУ
+    // =====================================================
+
+    const arrow = document.createElement('span')
+
+    arrow.classList.add('info__arrow')
+
+    text.after(arrow)
+
+
+    // =====================================================
+    // ИЗНАЧАЛЬНОЕ СОСТОЯНИЕ
+    // =====================================================
+
+    text.classList.add('collapsed')
+
+
+    // =====================================================
+    // КЛИК ПО СТРЕЛКЕ
+    // =====================================================
+
+    arrow.addEventListener('click', () => {
+
+      const isOpen = item.classList.contains('active')
+
+
+      // ===================================================
+      // ЗАКРЫВАЕМ ВСЕ ОСТАЛЬНЫЕ ОТЗЫВЫ
+      // ===================================================
+
+      reviewItems.forEach(otherItem => {
+
+        if (otherItem === item) return
+
+
+        const otherText =
+          otherItem.querySelector('.rev__text')
+
+        const otherArrow =
+          otherItem.querySelector('.info__arrow')
+
+
+        // Если у другого отзыва нет стрелки —
+        // ничего не делаем
+        if (!otherText || !otherArrow) return
+
+
+        otherItem.classList.remove('active')
+
+        otherArrow.classList.remove('active')
+
+        otherText.classList.add('collapsed')
+
+      })
+
+
+      // ===================================================
+      // ТЕКУЩИЙ ОТЗЫВ
+      // ===================================================
+
+      if (isOpen) {
+
+        // Закрываем текущий
+        item.classList.remove('active')
+
+        arrow.classList.remove('active')
+
+        text.classList.add('collapsed')
+
+      } else {
+
+        // Открываем текущий
+        item.classList.add('active')
+
+        arrow.classList.add('active')
+
+        text.classList.remove('collapsed')
+
+      }
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
   // =====================================================
   // ACCORDION
   // =====================================================
@@ -545,10 +626,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.tabs__pane');
 
   tabs.forEach(tab => {
+
     const isFirstTab = tab.classList.contains('info__tab--first');
     const infoItems = tab.querySelectorAll('.info__item');
 
     infoItems.forEach(item => {
+
       const list = item.querySelector('ul');
       const items = item.querySelectorAll('ul li');
       const arrow = item.querySelector('.info__arrow');
@@ -563,46 +646,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Первый таб — показываем первые 3 элемента
       if (isFirstTab) {
+
         items.forEach((li, index) => {
           if (index >= 3) {
             li.style.display = 'none';
           }
         });
+
       }
 
       // Остальные табы — скрываем весь список
       else {
+
         items.forEach(li => {
           li.style.display = 'none';
         });
+
       }
 
       // Клик по стрелке
       arrow.addEventListener('click', () => {
+
         const wrap = item.closest('.info__wrap');
         const isOpen = item.classList.contains('active');
 
-        // Закрываем все остальные блоки
+        // Закрываем остальные блоки
         if (wrap) {
+
           const allItems = wrap.querySelectorAll('.info__item');
 
           allItems.forEach(otherItem => {
+
             if (otherItem !== item) {
 
               otherItem.classList.remove('active');
 
-              const otherItems = otherItem.querySelectorAll('ul li');
+              const otherItems =
+                otherItem.querySelectorAll('ul li');
 
               otherItems.forEach((li, index) => {
+
                 if (isFirstTab && index < 3) {
                   li.style.display = '';
                 } else {
                   li.style.display = 'none';
                 }
+
               });
 
             }
+
           });
+
         }
 
         // Открываем / закрываем текущий блок
@@ -611,13 +706,18 @@ document.addEventListener('DOMContentLoaded', () => {
           item.classList.remove('active');
 
           if (isFirstTab) {
+
             items.forEach((li, index) => {
-              li.style.display = index < 3 ? '' : 'none';
+              li.style.display =
+                index < 3 ? '' : 'none';
             });
+
           } else {
+
             items.forEach(li => {
               li.style.display = 'none';
             });
+
           }
 
         } else {
@@ -632,8 +732,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Проверяем наличие открытого блока
         if (wrap) {
-          const hasActive = wrap.querySelector('.info__item.active');
-          wrap.classList.toggle('has-active', !!hasActive);
+
+          const hasActive =
+            wrap.querySelector('.info__item.active');
+
+          wrap.classList.toggle(
+            'has-active',
+            !!hasActive
+          );
+
         }
 
       });
@@ -644,69 +751,239 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =====================================================
-  // ФИЛЬТРЫ + ПОИСК — #PROG
+  // УНИВЕРСАЛЬНЫЕ ФИЛЬТРЫ
   // =====================================================
 
-  const progSection = document.querySelector('#prog');
+  function initFilters(section) {
+
+    if (!section) return;
+
+    const filterButtons =
+      section.querySelectorAll(
+        '[data-filter]'
+      );
+
+    if (!filterButtons.length) return;
+
+    const filterItems =
+      section.querySelectorAll(
+        '.info__item[data-category]'
+      );
+
+    if (!filterItems.length) return;
+
+
+    // -----------------------------------------------
+    // Применяем фильтр
+    // -----------------------------------------------
+
+    function applyFilter(filter) {
+
+      filterItems.forEach(item => {
+
+        // "all" — показываем всё
+        if (filter === 'all') {
+
+          item.style.display = '';
+
+          return;
+        }
+
+        // Проверяем категорию элемента
+        const category =
+          item.dataset.category;
+
+        if (category === filter) {
+
+          item.style.display = '';
+
+        } else {
+
+          item.style.display = 'none';
+
+        }
+
+      });
+
+    }
+
+
+    // -----------------------------------------------
+    // Кнопки фильтра
+    // -----------------------------------------------
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener('click', event => {
+
+        event.preventDefault();
+
+        // Убираем active со всех кнопок
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+
+        // Добавляем active текущей
+        button.classList.add('active');
+
+        // Получаем значение фильтра
+        const filter =
+          button.dataset.filter || 'all';
+
+        applyFilter(filter);
+
+      });
+
+    });
+
+
+    // -----------------------------------------------
+    // Инициализация
+    // -----------------------------------------------
+
+    const activeButton =
+      section.querySelector(
+        '[data-filter].active'
+      );
+
+    if (activeButton) {
+
+      applyFilter(
+        activeButton.dataset.filter || 'all'
+      );
+
+    }
+
+  }
+
+
+  // =====================================================
+  // ФИЛЬТРЫ ПО СЕКЦИЯМ
+  // =====================================================
+
+  /*
+   * Просто добавляешь сюда секции,
+   * в которых есть [data-filter].
+   */
+
+  document
+    .querySelectorAll(
+      '[data-filter-section]'
+    )
+    .forEach(section => {
+
+      initFilters(section);
+
+    });
+
+
+  // =====================================================
+  // #PROG — ФИЛЬТР + ПОИСК
+  // =====================================================
+
+  const progSection =
+    document.querySelector('#prog');
 
   if (progSection) {
 
-    const filterButtons = progSection.querySelectorAll(
-      '.prog__filters .btn'
-    );
+    const filterButtons =
+      progSection.querySelectorAll(
+        '.prog__filters .btn'
+      );
 
-    const searchForm = progSection.querySelector('.nav__search');
+    const searchForm =
+      progSection.querySelector(
+        '.nav__search'
+      );
 
-    const searchInput = searchForm
-      ? searchForm.querySelector('input[type="search"]')
-      : null;
+    const searchInput =
+      searchForm
+        ? searchForm.querySelector(
+            'input[type="search"]'
+          )
+        : null;
 
-    const infoItems = progSection.querySelectorAll('.info__item');
+    const infoItems =
+      progSection.querySelectorAll(
+        '.info__item'
+      );
 
 
-    // Проверяем совпадение с поиском
-    function matchesProgSearch(item, query) {
+    // -----------------------------------------------
+    // Поиск
+    // -----------------------------------------------
+
+    function matchesSearch(item, query) {
 
       if (!query) {
         return true;
       }
 
-      // Ищем по всему содержимому блока
-      const text = item.textContent
-        .trim()
-        .toLowerCase();
+      const text =
+        item.textContent
+          .trim()
+          .toLowerCase();
 
       return text.includes(query);
+
     }
 
 
-    // Получаем активную кнопку
-    function getActiveProgFilter() {
+    // -----------------------------------------------
+    // Активный фильтр
+    // -----------------------------------------------
 
-      let activeIndex = 0;
+    function getActiveFilter() {
 
-      filterButtons.forEach((button, index) => {
+      const activeButton =
+        progSection.querySelector(
+          '.prog__filters .btn.active'
+        );
 
-        if (button.classList.contains('active')) {
-          activeIndex = index;
-        }
+      if (!activeButton) {
+        return 'all';
+      }
 
-      });
+      // Если есть data-filter — используем его
+      if (activeButton.dataset.filter) {
+        return activeButton.dataset.filter;
+      }
 
-      return activeIndex;
+      // Сохраняем старую логику:
+      // первая кнопка = все
+      // вторая = direction
+      const index =
+        Array.from(filterButtons)
+          .indexOf(activeButton);
+
+      if (index === 0) {
+        return 'all';
+      }
+
+      if (index === 1) {
+        return 'direction';
+      }
+
+      return 'all';
+
     }
 
 
+    // -----------------------------------------------
     // Применяем фильтр + поиск
+    // -----------------------------------------------
+
     function applyProgFilter() {
 
-      const activeFilter = getActiveProgFilter();
+      const activeFilter =
+        getActiveFilter();
 
-      const query = searchInput
-        ? searchInput.value
-            .trim()
-            .toLowerCase()
-        : '';
+      const query =
+        searchInput
+          ? searchInput.value
+              .trim()
+              .toLowerCase()
+          : '';
 
 
       infoItems.forEach(item => {
@@ -714,43 +991,45 @@ document.addEventListener('DOMContentLoaded', () => {
         let matchesFilter = true;
 
 
-        // -----------------------------------------------
-        // ВСЕ ПРОГРАММЫ
-        // -----------------------------------------------
+        // -------------------------------------------
+        // Фильтр
+        // -------------------------------------------
 
-        if (activeFilter === 0) {
-          matchesFilter = true;
-        }
-
-
-        // -----------------------------------------------
-        // ПРОГРАММЫ ПО НАПРАВЛЕНИЯМ
-        // -----------------------------------------------
-
-        if (activeFilter === 1) {
+        if (activeFilter !== 'all') {
 
           matchesFilter =
-            item.dataset.category === 'direction';
+            item.dataset.category ===
+            activeFilter;
 
         }
 
 
-        // -----------------------------------------------
-        // ПОИСК
-        // -----------------------------------------------
+        // -------------------------------------------
+        // Поиск
+        // -------------------------------------------
 
         const matchesSearch =
-          matchesProgSearch(item, query);
+          matchesSearchText(
+            item,
+            query
+          );
 
 
-        // -----------------------------------------------
-        // ПОКАЗЫВАЕМ / СКРЫВАЕМ
-        // -----------------------------------------------
+        // -------------------------------------------
+        // Итог
+        // -------------------------------------------
 
-        if (matchesFilter && matchesSearch) {
+        if (
+          matchesFilter &&
+          matchesSearch
+        ) {
+
           item.style.display = '';
+
         } else {
+
           item.style.display = 'none';
+
         }
 
       });
@@ -758,7 +1037,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    // Отдельная функция поиска,
+    // чтобы не было конфликта имён
+    function matchesSearchText(item, query) {
+
+      if (!query) {
+        return true;
+      }
+
+      const text =
+        item.textContent
+          .trim()
+          .toLowerCase();
+
+      return text.includes(query);
+
+    }
+
+
+    // -----------------------------------------------
     // Кнопки фильтра
+    // -----------------------------------------------
+
     filterButtons.forEach(button => {
 
       button.addEventListener('click', event => {
@@ -778,26 +1078,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Поиск
+    // -----------------------------------------------
+    // Поиск во время ввода
+    // -----------------------------------------------
+
     if (searchInput) {
 
-      searchInput.addEventListener('input', () => {
-        applyProgFilter();
-      });
+      searchInput.addEventListener(
+        'input',
+        applyProgFilter
+      );
 
     }
 
 
-    // Submit формы
+    // -----------------------------------------------
+    // Submit
+    // -----------------------------------------------
+
     if (searchForm) {
 
-      searchForm.addEventListener('submit', event => {
+      searchForm.addEventListener(
+        'submit',
+        event => {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        applyProgFilter();
+          applyProgFilter();
 
-      });
+        }
+      );
 
     }
 
@@ -805,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =====================================================
-  // ПОИСК — #DIAGNOSTICS
+  // #DIAGNOSTICS — ПОИСК
   // =====================================================
 
   const diagnosticsSection =
@@ -814,30 +1124,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (diagnosticsSection) {
 
     const searchForms =
-      diagnosticsSection.querySelectorAll('.nav__search');
-
+      diagnosticsSection.querySelectorAll(
+        '.nav__search'
+      );
 
     searchForms.forEach(searchForm => {
 
       const searchInput =
-        searchForm.querySelector('input[type="search"]');
+        searchForm.querySelector(
+          'input[type="search"]'
+        );
 
+      if (!searchInput) return;
 
-      if (!searchInput) {
-        return;
-      }
-
-
-      // -----------------------------------------------
-      // Находим все блоки для поиска
-      // -----------------------------------------------
 
       const infoItems =
-        diagnosticsSection.querySelectorAll('.info__item');
+        diagnosticsSection.querySelectorAll(
+          '.info__item'
+        );
 
 
       // -----------------------------------------------
-      // Функция поиска
+      // Поиск
       // -----------------------------------------------
 
       function applyDiagnosticsSearch() {
@@ -850,38 +1158,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         infoItems.forEach(item => {
 
-          // Берём ВСЁ текстовое содержимое блока
-          //
-          // Например:
-          // h3
-          // li
-          // a
-          // span
-          // и т.д.
-
           const text =
             item.textContent
               .trim()
               .toLowerCase();
 
 
-          // Пустой поиск — показываем всё
+          // Пустой поиск
           if (!query) {
 
             item.style.display = '';
 
             return;
+
           }
 
 
-          // Есть совпадение — показываем
+          // Есть совпадение
           if (text.includes(query)) {
 
             item.style.display = '';
 
           }
 
-          // Нет совпадения — скрываем
+          // Нет совпадения
           else {
 
             item.style.display = 'none';
@@ -894,27 +1194,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       // -----------------------------------------------
-      // Поиск во время ввода
+      // Input
       // -----------------------------------------------
 
-      searchInput.addEventListener('input', () => {
-
-        applyDiagnosticsSearch();
-
-      });
+      searchInput.addEventListener(
+        'input',
+        applyDiagnosticsSearch
+      );
 
 
       // -----------------------------------------------
-      // Submit формы
+      // Submit
       // -----------------------------------------------
 
-      searchForm.addEventListener('submit', event => {
+      searchForm.addEventListener(
+        'submit',
+        event => {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        applyDiagnosticsSearch();
+          applyDiagnosticsSearch();
 
-      });
+        }
+      );
 
     });
 
@@ -1152,6 +1454,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+const swiper25 = new Swiper('.swiper-rev', {
+  slidesPerView: 1,
+  spaceBetween: 10,
+
+  navigation: {
+    nextEl: '.swiper-rev-next',
+    prevEl: '.swiper-rev-prev',
+  },
+
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    992: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+
+    1300: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    }
+  }
+})
 
   // ========================================
   // CONTACTS SWIPERS
@@ -1178,6 +1506,324 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // =====================================================
+  // HEALING DAYS
+  // =====================================================
+
+  const healingDaysSwiper = new Swiper('.healing-days__slider', {
+
+    slidesPerView: 8,
+    spaceBetween: 21.5,
+
+    breakpoints: {
+      0: {
+        slidesPerView: 6, 
+		spaceBetween: 5,
+      },
+	  576: {
+        slidesPerView: 8
+      },
+      768: {
+        slidesPerView: 8
+      }
+    },
+
+    navigation: {
+      prevEl: '.healing-days__arrow_prev',
+      nextEl: '.healing-days__arrow_next'
+    }
+  })
+
+  const days = document.querySelectorAll('.healing-days__slide')
+
+  days.forEach(day => {
+
+    day.addEventListener('click', () => {
+
+      days.forEach(item => {
+        item.classList.remove('active')
+      })
+
+      day.classList.add('active')
+
+    })
+
+  })
+
+
+  // =====================================================
+  // TIME SLIDER
+  // =====================================================
+
+  const healingTimeSwiper = new Swiper('.healing-time__slider', {
+
+    slidesPerView: 6,
+    spaceBetween: 10,
+
+    breakpoints: {
+      0: {
+        slidesPerView: 4
+      },
+
+      768: {
+        slidesPerView: 6
+      }
+    },
+
+    navigation: {
+      prevEl: '.healing-time__arrow_prev',
+      nextEl: '.healing-time__arrow_next'
+    }
+  })
+
+  const times = document.querySelectorAll('.healing-time__slide')
+
+  times.forEach(time => {
+
+    time.addEventListener('click', () => {
+
+      times.forEach(item => {
+        item.classList.remove('active')
+      })
+
+      time.classList.add('active')
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const thanksItems = document.querySelectorAll('.thanks__item')
+
+  thanksItems.forEach(item => {
+
+    // =====================================================
+    // DAYS SLIDER
+    // =====================================================
+
+    const daysSliderElement = item.querySelector('.thanks__days-slider')
+
+    if (daysSliderElement) {
+
+      const daysPrev = item.querySelector('.thanks__days-arrow_prev')
+      const daysNext = item.querySelector('.thanks__days-arrow_next')
+      const days = item.querySelectorAll('.thanks__day')
+
+      const daysSlider = new Swiper(daysSliderElement, {
+        slidesPerView: 7,
+        spaceBetween: 13,
+
+        slidesPerGroup: 1,
+
+        navigation: {
+          prevEl: daysPrev,
+          nextEl: daysNext
+        },
+
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+
+        on: {
+          init(swiper) {
+            updateDaysSmoke(swiper)
+            updateDaysArrows(swiper, daysPrev, daysNext)
+          },
+
+          slideChange(swiper) {
+            updateDaysSmoke(swiper)
+            updateDaysArrows(swiper, daysPrev, daysNext)
+          },
+
+          resize(swiper) {
+            updateDaysSmoke(swiper)
+            updateDaysArrows(swiper, daysPrev, daysNext)
+          },
+
+          update(swiper) {
+            updateDaysSmoke(swiper)
+            updateDaysArrows(swiper, daysPrev, daysNext)
+          }
+        }
+      })
+
+      days.forEach(day => {
+
+        day.addEventListener('click', () => {
+
+          days.forEach(item => {
+            item.classList.remove('active')
+          })
+
+          day.classList.add('active')
+
+        })
+
+      })
+
+    }
+
+
+    // =====================================================
+    // TIME SLIDER
+    // =====================================================
+
+    const timeSliderElement = item.querySelector('.thanks__time-slider')
+
+    if (timeSliderElement) {
+
+      const timePrev = item.querySelector('.thanks__time-arrow_prev')
+      const timeNext = item.querySelector('.thanks__time-arrow_next')
+      const timeItems = item.querySelectorAll('.thanks__time-item')
+
+      const timeSlider = new Swiper(timeSliderElement, {
+        slidesPerView: 6,
+        spaceBetween: 10,
+
+        slidesPerGroup: 1,
+
+        navigation: {
+          prevEl: timePrev,
+          nextEl: timeNext
+        },
+
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+
+        on: {
+          init(swiper) {
+            updateTimeSmoke(swiper)
+            updateTimeArrows(swiper, timePrev, timeNext)
+          },
+
+          slideChange(swiper) {
+            updateTimeSmoke(swiper)
+            updateTimeArrows(swiper, timePrev, timeNext)
+          },
+
+          resize(swiper) {
+            updateTimeSmoke(swiper)
+            updateTimeArrows(swiper, timePrev, timeNext)
+          },
+
+          update(swiper) {
+            updateTimeSmoke(swiper)
+            updateTimeArrows(swiper, timePrev, timeNext)
+          }
+        }
+      })
+
+      timeItems.forEach(time => {
+
+        time.addEventListener('click', () => {
+
+          timeItems.forEach(item => {
+            item.classList.remove('active')
+          })
+
+          time.classList.add('active')
+
+        })
+
+      })
+
+    }
+
+  })
+
+
+  // =====================================================
+  // DAYS SMOKE
+  // =====================================================
+
+  function updateDaysSmoke(swiper) {
+
+    swiper.slides.forEach(slide => {
+      slide.classList.remove('smoke-left', 'smoke-right')
+    })
+
+    const firstVisibleIndex = swiper.activeIndex
+
+    const lastVisibleIndex = Math.min(
+      firstVisibleIndex + 6,
+      swiper.slides.length - 1
+    )
+
+    const firstVisible = swiper.slides[firstVisibleIndex]
+    const lastVisible = swiper.slides[lastVisibleIndex]
+
+    if (firstVisible) {
+      firstVisible.classList.add('smoke-left')
+    }
+
+    if (lastVisible && lastVisible !== firstVisible) {
+      lastVisible.classList.add('smoke-right')
+    }
+
+  }
+
+
+  // =====================================================
+  // TIME SMOKE
+  // =====================================================
+
+  function updateTimeSmoke(swiper) {
+
+    swiper.slides.forEach(slide => {
+      slide.classList.remove('smoke-left', 'smoke-right')
+    })
+
+    const firstVisibleIndex = swiper.activeIndex
+
+    const lastVisibleIndex = Math.min(
+      firstVisibleIndex + 5,
+      swiper.slides.length - 1
+    )
+
+    const firstVisible = swiper.slides[firstVisibleIndex]
+    const lastVisible = swiper.slides[lastVisibleIndex]
+
+    if (firstVisible) {
+      firstVisible.classList.add('smoke-left')
+    }
+
+    if (lastVisible && lastVisible !== firstVisible) {
+      lastVisible.classList.add('smoke-right')
+    }
+
+  }
+
+
+  // =====================================================
+  // ARROWS
+  // =====================================================
+
+  function updateDaysArrows(swiper, prev, next) {
+
+    if (!prev || !next) return
+
+    prev.style.opacity = swiper.isBeginning ? '0.3' : '1'
+    next.style.opacity = swiper.isEnd ? '0.3' : '1'
+
+  }
+
+
+  function updateTimeArrows(swiper, prev, next) {
+
+    if (!prev || !next) return
+
+    prev.style.opacity = swiper.isBeginning ? '0.3' : '1'
+    next.style.opacity = swiper.isEnd ? '0.3' : '1'
+
+  }
+
+})
 document.addEventListener('DOMContentLoaded', () => {
   let patientSwiper = null
   let newsSwiper = null
@@ -1833,6 +2479,195 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 });
+document.addEventListener('DOMContentLoaded', () => {
+
+  const faqBlocks = document.querySelectorAll('.healing-item__block')
+
+  faqBlocks.forEach(block => {
+
+    const text = block.querySelector('small')
+
+    if (!text) return
+
+    // Изначально скрываем
+    text.style.maxHeight = '0'
+    text.style.overflow = 'hidden'
+    text.style.marginTop = '0'
+    text.style.transition = 'max-height 0.4s ease, margin-top 0.4s ease'
+
+
+    block.addEventListener('click', () => {
+
+      const isActive = block.classList.contains('active')
+
+
+      if (isActive) {
+
+        // Закрываем
+        block.classList.remove('active')
+
+        text.style.maxHeight = '0'
+        text.style.marginTop = '0'
+
+      } else {
+
+        // Открываем
+        block.classList.add('active')
+
+        text.style.maxHeight = text.scrollHeight + 'px'
+        text.style.marginTop = '50px'
+
+      }
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const areas = document.querySelectorAll('.healing-item__area')
+
+  areas.forEach(area => {
+
+    const blocks = area.querySelectorAll('.prog-item__block')
+
+    if (blocks.length <= 5) return
+
+
+    // =====================================================
+    // СКРЫВАЕМ ЭЛЕМЕНТЫ ПОСЛЕ ПЯТОГО
+    // =====================================================
+
+    blocks.forEach((block, index) => {
+
+      if (index >= 5) {
+        block.style.display = 'none'
+      }
+
+    })
+
+
+    // =====================================================
+    // СОЗДАЁМ КНОПКУ
+    // =====================================================
+
+    const button = document.createElement('button')
+
+    button.type = 'button'
+    button.classList.add('healing-item__more')
+    button.textContent = 'Показать ещё'
+
+
+    area.appendChild(button)
+
+
+    // =====================================================
+    // КЛИК ПО КНОПКЕ
+    // =====================================================
+
+    button.addEventListener('click', () => {
+
+      const isOpen = area.classList.contains('active')
+
+
+      if (isOpen) {
+
+        // =================================================
+        // СКРЫВАЕМ
+        // =================================================
+
+        blocks.forEach((block, index) => {
+
+          if (index >= 5) {
+            block.style.display = 'none'
+          }
+
+        })
+
+        area.classList.remove('active')
+
+        button.textContent = 'Показать ещё'
+
+      } else {
+
+        // =================================================
+        // ПОКАЗЫВАЕМ
+        // =================================================
+
+        blocks.forEach((block, index) => {
+
+          if (index >= 5) {
+            block.style.display = ''
+          }
+
+        })
+
+        area.classList.add('active')
+
+        button.textContent = 'Скрыть'
+
+      }
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const timeButtons = document.querySelectorAll('.order-healing__time a')
+  const checkboxes = document.querySelectorAll('.order-healing__checkbox')
+
+  if (!timeButtons.length || !checkboxes.length) return
+
+  function showRange(range) {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.dataset.range === range) {
+        checkbox.style.display = ''
+      } else {
+        checkbox.style.display = 'none'
+      }
+    })
+  }
+
+  timeButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault()
+
+      timeButtons.forEach(item => {
+        item.classList.remove('active')
+      })
+
+      button.classList.add('active')
+
+      showRange(button.dataset.time)
+    })
+  })
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+
+      const area = checkbox.closest('.order-healing__area')
+
+      if (!area) return
+
+      const currentScroll = area.scrollLeft
+
+      requestAnimationFrame(() => {
+        area.scrollLeft = currentScroll
+      })
+
+    })
+  })
+
+  const activeButton = document.querySelector('.order-healing__time a.active')
+
+  if (activeButton) {
+    showRange(activeButton.dataset.time)
+  }
+
+})
 // Замена <img class="svg"> на inline SVG
 document.addEventListener("DOMContentLoaded", () => {
   const svgImages = document.querySelectorAll('img.svg');

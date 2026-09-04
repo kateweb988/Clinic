@@ -62,6 +62,22 @@
       width: 110px
    .prog .diagnostics__row .nav__search
       max-width: 869px
+   .rev
+      .rev__item
+         width: 31.6%
+   .rev__content
+      max-width: 63.07%
+   .healing-item__block
+      width: 32.2%
+   .order-healing .order__form
+      max-width: 518px
+   .thanks__item
+      width: 23.8%
+   .rev-page__content
+      max-width: 803px
+   .prog-item .main__wrap 
+      overflow: hidden
+      border-radius: 30px
 @media screen and (max-width: 1300px)
    .side-menu, .side-menu__overlay
       top: 157px
@@ -528,6 +544,102 @@
       height: 100%
       left: initial
       right: 20px
+   .rev 
+      .vacan-item__form
+         max-width: 100%
+         margin: 0 auto 102px
+   .order__form textarea
+      margin-bottom: 15px
+   .rev__content 
+      max-width: 100%
+   .rev .rev__item 
+      width: 48.8%
+   .rev__wrap
+      flex-direction: column-reverse
+   .rev__text
+      max-width: 100%
+      font-size: 13px
+      line-height: 16px
+   .rev__top
+      margin-bottom: 12px
+   .rev__check
+      margin-top: 10px
+      .order__flex
+         width: auto
+   .rev
+      padding-bottom: 50px
+   .rev__filters
+      margin-bottom: 20px
+      flex-wrap: wrap
+      position: absolute
+      top: 588px
+      left: 0
+   .healing-item .main__btns
+      margin-top: 75px
+   .healing-item__faq
+      margin-top: 100px
+   .healing-item__block
+      width: 48.8%
+   .healing-days, .order-healing__area
+      width: 100%
+      max-width: 620px
+   .order-healing .order__content
+      z-index: 10
+      max-width: 100%
+   .order-healing .order__form
+      margin-top: 0
+      max-width: 100%
+   .order-healing__result
+      width: 100%
+   .thanks
+      padding: 50px 0
+   .thanks h2
+      margin-bottom: 28px
+   .thanks__row
+      gap: 30px 19px
+   .thanks__item 
+      width: 31.9%
+      padding: 25px 15px 15px
+   .thanks__ava
+      width: 80px
+      height: 80px
+   .thanks__top
+      gap: 15px
+   .thanks__info p
+      font-size: 13px
+      line-height: 16px
+   .thanks__days-arrow, .thanks__time-arrow
+      display: none
+   .thanks__locals
+      margin-bottom: 25px
+   .thanks__content
+      margin-bottom: 15px
+   .rev-page .vacan-item__form
+      margin-top: 20px
+      max-width: 100%
+   .rev-page 
+      padding: 50px 0
+      .rev__wrap
+         flex-direction: column
+   .rev-page__top
+      margin-bottom: 30px
+   .rev-page__content
+      max-width: 100%
+   .rev-page .swiper-rev .rev__text
+      font-size: 15px
+      line-height: 18px
+   .rev-page__per
+      display: none
+   .operations-item .main__btns
+      margin-top: 95px
+   .operations-item .main__wrap .swiper1 .swiper-slide img
+      width: 398px
+   .operations-item__text
+      margin-top: 100px
+   .healing-item__block p
+      max-width: 275px
+   .operations-item .healing-item__faq
+      margin-top: 40px
 @media ( max-width: 950px )
    .vacan-item
       padding-bottom: 50px
@@ -588,6 +700,14 @@
       width: 100%
    .contacts__rev a 
       width: 23.8%
+   .operations-item .main__btns
+      margin-top: 44px
+   .operations-item .main__wrap .swiper1 .swiper-slide img
+      width: 335px
+      left: initial
+      right: -53px
+   .operations-item .healing-item__faq
+      margin-top: 30px
 @media ( max-width: 900px )
    .diagnostics__row
       margin: 30px 0 20px
@@ -631,6 +751,8 @@
       width: 32%
    .info__item
       width: 31.3% !important
+   .rev .rev__item 
+      width: 48.5% !important
    .about__pic
       border-radius: 10px 
       height: 350px
@@ -830,6 +952,41 @@
    .prog-item__block .btn
       margin-top: 20px
       width: 100%
+   .rev__text.collapsed
+      -webkit-line-clamp: 5
+      max-height: calc(1.5em * 5)
+   .healing-item .main__wrap .swiper1 .swiper-slide img
+      width: 313px
+   .healing-item__block
+      padding: 30px 20px 
+      width: 48.5%
+   .healing-item__faq
+      gap: 10px
+   .healing-item__block:after
+      background-size: 100% !important
+      width: 30px
+      height: 30px
+      top: 43px
+      right: 11px
+   .prog-item__pay
+      .diagnostics__row .nav__search
+         margin-top: 0
+   .order-healing .local__item
+      width: 100%
+   .order-healing .local__row
+      margin-bottom: 30px
+   .order-healing__result
+      font-size: 12px
+      margin-bottom: 10px
+      line-height: 13px
+   .thanks h2
+      margin-bottom: 20px
+   .thanks__item
+      width: 48%
+   .rev-page__top
+      margin-bottom: 20px
+   .rev-page .swiper-rev .rev__item
+      padding: 20px
 @media screen and (max-width: 767px)
    .prog__filters a
       font-size: 10px
@@ -1141,6 +1298,39 @@
       max-width: 307px
    .about-page .main__item, .prog-item .main__item 
       width: 48%
+   .rev .rev__item
+      width: 100% !important
+      &:nth-child(n+9)
+         display: none
+   .rev__filters
+      top: 564px
+   .rev .vacan-item__form
+      margin-bottom: 86px
+   .healing-days__arrow
+      display: none
+   .healing-days__slider
+      overflow: visible
+      margin: 0
+   .order-healing
+      .order__wrap 
+         overflow: hidden
+   .thanks__item
+      width: 100%
+   .thanks__info p
+      width: 100%
+      max-width: 170px
+   .rev-page .swiper-rev .rev__stars
+      margin-bottom: 22px
+   .healing-item__block
+      width: 100%
+   .operations-item .main__btns
+      margin-top: 88px
+   .operations-item__text
+      font-size: 13px
+      line-height: 20px
+   .operations-item .healing-item__block:after
+      top: 39px
+      right: 11px
 @media screen and (max-width: 576px)
    .pay__item
       img 
@@ -1359,6 +1549,94 @@
       h2 
          width: 100%
          max-width: 300px
+   .rev__check .custom-checkbox + label span
+      font-size: 13px
+      line-height: 120%
+   .rev__list
+      gap: 10px
+   .vacan-item__form .order__form .custom-checkbox + label
+      width: 100%
+      max-width: 320px
+   .rev 
+      &__container
+         position: relative
+      h1 
+         margin-bottom: 20px
+   .rev__filters
+      margin-bottom: 20px
+      flex-wrap: wrap
+      top: 585px
+      a 
+         font-size: 12px
+         &:first-child
+            margin-right: 10rem
+         &:nth-child(2), &:nth-child(3)
+            width: 48%
+            padding: 0
+   .rev .vacan-item__form
+      margin-bottom: 146px
+   .healing-item .main__btns
+      margin-top: 140px
+   .healing-item__block p
+      font-size: 15px
+      line-height: 18px
+   .healing-item__block
+      width: 100%
+   .healing-item__block:after
+      top: 39px
+   .prog-item__pay h2
+      margin-bottom: 20px
+   .healing-item .diagnostics__row
+      margin-bottom: 30px
+   .prog-item__block
+      padding: 20px
+   .healing-item__more
+      margin-top: 20px
+      left: 1px
+      font-size: 13px
+   .order-healing .order__content h2
+      font-size: 20px
+      line-height: 22px
+      margin-bottom: 5px
+   .order-healing
+      &__area
+         display: flex 
+         gap: 10px
+         width: 100%
+         flex-wrap: nowrap
+         overflow-x: auto
+         overflow-y: hidden
+         white-space: nowrap
+         scrollbar-width: none
+         &::-webkit-scrollbar
+            display: none
+      &__checkbox
+         width: 60px
+         height: 30px
+         max-width: 60px
+         flex: 1 0 auto
+         align-items: center
+         justify-content: center
+         box-sizing: border-box
+         vertical-align: middle
+         input 
+            display: none
+   .order__form .custom-checkbox + label
+      font-size: 12px
+      line-height: 14px
+   .order-healing .order__wrap
+      padding: 40px 20px 20px
+   .thanks__info
+      margin-top: 7px
+   .thanks__days-slider
+      overflow: visible
+   .rev-page .swiper-rev .rev__item
+      width: 100% !important
+   .rev-page .swiper-rev 
+      width: 80%
+      overflow: visible
+   .thanks__day span
+      width: 100%
 @media screen and (max-width: 370px)
    .art-news
       h2 
