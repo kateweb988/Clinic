@@ -174,14 +174,9 @@ document.addEventListener('DOMContentLoaded', function () {
     $.arcticmodal('close');
 
   });
-  $('.a1').click(function (e) {
+  $('.calc__btn').click(function (e) {
     e.preventDefault();
-    $('#popup-call').arcticmodal({
-    });
-  });
-  $('.a2, .link').click(function (e) {
-    e.preventDefault();
-    $('#popup-call2').arcticmodal({
+    $('#popup-calc').arcticmodal({
     });
   });
 
@@ -1279,6 +1274,41 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 document.addEventListener('DOMContentLoaded', function () {
+  const swiper17 = new Swiper('.swiper-lic', {
+	slidesPerView: 'auto',
+	spaceBetween: 10,
+
+	navigation: {
+		nextEl: '.swiper-lic-next',
+		prevEl: '.swiper-lic-prev',
+	},
+
+	on: {
+		init: function () {
+		updateSwiperFade(this)
+		},
+
+		slideChange: function () {
+		updateSwiperFade(this)
+		},
+
+		resize: function () {
+		updateSwiperFade(this)
+		}
+	}
+	})
+
+
+	function updateSwiperFade(swiper) {
+
+	const slider = swiper.el
+
+	if (swiper.isEnd) {
+		slider.classList.add('swiper-end')
+	} else {
+		slider.classList.remove('swiper-end')
+	}
+	}
 
   // ========================================
   // SWIPER 1
@@ -1470,13 +1500,43 @@ const swiper25 = new Swiper('.swiper-rev', {
     },
 
     992: {
-      slidesPerView: 3,
+      slidesPerView: document.querySelector('.doc-item') ? 2 : 3,
       spaceBetween: 20,
     },
 
     1300: {
       slidesPerView: 2,
       spaceBetween: 20,
+    }
+  }
+})
+const swiper26 = new Swiper('.swiper-general', {
+  slidesPerView: 3,
+  spaceBetween: 25,
+
+  navigation: {
+    nextEl: '.swiper-general-next',
+    prevEl: '.swiper-general-prev',
+  },
+
+  breakpoints: {
+	0: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    992: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    1300: {
+      slidesPerView: 3,
+      spaceBetween: 25,
     }
   }
 })
@@ -1506,7 +1566,6 @@ const swiper25 = new Swiper('.swiper-rev', {
   });
 
 });
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // =====================================================
@@ -2481,6 +2540,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener('DOMContentLoaded', () => {
 
+  // =====================================================
+  // HEALING FAQ
+  // =====================================================
+
   const faqBlocks = document.querySelectorAll('.healing-item__block')
 
   faqBlocks.forEach(block => {
@@ -2489,33 +2552,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!text) return
 
-    // Изначально скрываем
+    // Изначально скрываем текст
     text.style.maxHeight = '0'
     text.style.overflow = 'hidden'
     text.style.marginTop = '0'
     text.style.transition = 'max-height 0.4s ease, margin-top 0.4s ease'
 
-
     block.addEventListener('click', () => {
 
-      const isActive = block.classList.contains('active')
+      // Переключаем active
+      block.classList.toggle('active')
 
+      // Получаем фактическое состояние ПОСЛЕ переключения
+      const isActive = block.classList.contains('active')
 
       if (isActive) {
 
-        // Закрываем
-        block.classList.remove('active')
-
-        text.style.maxHeight = '0'
-        text.style.marginTop = '0'
+        // Открываем
+        text.style.maxHeight = text.scrollHeight + 'px'
+        text.style.marginTop = '50px'
 
       } else {
 
-        // Открываем
-        block.classList.add('active')
+        // Закрываем
+        text.style.maxHeight = '0'
+        text.style.marginTop = '0'
 
-        text.style.maxHeight = text.scrollHeight + 'px'
-        text.style.marginTop = '50px'
+      }
+
+      // =====================================================
+      // HAS-ACTIVE У РОДИТЕЛЬСКОГО FAQ
+      // =====================================================
+
+      const faq = block.closest('.healing-item__faq')
+
+      if (faq) {
+
+        const hasActive = faq.querySelector(
+          '.healing-item__block.active'
+        )
+
+        faq.classList.toggle(
+          'has-active',
+          !!hasActive
+        )
 
       }
 
@@ -2666,6 +2746,320 @@ document.addEventListener('DOMContentLoaded', () => {
   if (activeButton) {
     showRange(activeButton.dataset.time)
   }
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const specs = document.querySelectorAll('.doc-item__spec')
+
+  specs.forEach(spec => {
+
+    const items = spec.querySelectorAll('li')
+
+    // Если 8 или меньше — кнопку не создаём
+    if (items.length <= 8) return
+
+
+    // =====================================================
+    // СКРЫВАЕМ ЭЛЕМЕНТЫ ПОСЛЕ ВОСЬМОГО
+    // =====================================================
+
+    items.forEach((item, index) => {
+
+      if (index >= 8) {
+        item.style.display = 'none'
+      }
+
+    })
+
+
+    // =====================================================
+    // СОЗДАЁМ КНОПКУ
+    // =====================================================
+
+    const button = document.createElement('button')
+
+    button.type = 'button'
+    button.classList.add('healing-item__more')
+    button.textContent = 'Развернуть'
+
+    spec.appendChild(button)
+
+
+    // =====================================================
+    // КЛИК ПО КНОПКЕ
+    // =====================================================
+
+    button.addEventListener('click', () => {
+
+      const isOpen = spec.classList.contains('active')
+
+
+      if (isOpen) {
+
+        // =================================================
+        // СКРЫВАЕМ
+        // =================================================
+
+        items.forEach((item, index) => {
+
+          if (index >= 8) {
+            item.style.display = 'none'
+          }
+
+        })
+
+        spec.classList.remove('active')
+
+        button.textContent = 'Развернуть'
+
+
+      } else {
+
+        // =================================================
+        // ПОКАЗЫВАЕМ
+        // =================================================
+
+        items.forEach((item, index) => {
+
+          if (index >= 8) {
+            item.style.display = ''
+          }
+
+        })
+
+        spec.classList.add('active')
+
+        button.textContent = 'Скрыть'
+
+      }
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const links = document.querySelectorAll('.go_to')
+
+  links.forEach(link => {
+
+    link.addEventListener('click', event => {
+
+      const href = link.getAttribute('href')
+
+      if (!href || href === '#') return
+
+      const target = document.querySelector(href)
+
+      if (!target) return
+
+      event.preventDefault()
+
+      const offset = 110
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY
+
+      window.scrollTo({
+        top: targetPosition - offset,
+        behavior: 'smooth'
+      })
+
+    })
+
+  })
+
+})
+document.addEventListener('DOMContentLoaded', () => {
+
+  const panes = document.querySelectorAll('.tabs__pane')
+  const calcInfos = document.querySelectorAll('.calc__info')
+  const calcDeleteButtons = document.querySelectorAll('.calc__delete')
+
+  if (!panes.length) return
+
+
+  function getTotalSelected() {
+
+    let total = 0
+
+    panes.forEach(pane => {
+      total += pane.querySelectorAll('.calc__block.active').length
+    })
+
+    return total
+  }
+
+
+  function updateInfo() {
+
+    const total = getTotalSelected()
+    const totalSum = total * 10
+
+    calcInfos.forEach(calcInfo => {
+
+      const selectedNumber = calcInfo.querySelector('.calc__selected span')
+      const sum = calcInfo.querySelector('.calc__sum span')
+
+      if (!total) {
+        calcInfo.style.display = 'none'
+      } else {
+        calcInfo.style.display = ''
+      }
+
+      if (selectedNumber) {
+        selectedNumber.textContent = total
+      }
+
+      if (sum) {
+        sum.textContent = `${totalSum} ₽`
+      }
+
+    })
+  }
+
+
+  function updateCurrentPane(pane) {
+
+    const blocks = pane.querySelectorAll('.calc__block.active')
+    const selectedList = pane.querySelector('.calc__selected-list')
+    const clearButton = pane.querySelector('.calc__clear')
+
+    if (selectedList && clearButton) {
+
+      selectedList.innerHTML = ''
+
+      blocks.forEach(block => {
+
+        const calcItem = block.closest('.calc__item')
+        const title = calcItem?.querySelector('h2')
+
+        if (!title) return
+
+        const selectedItem = document.createElement('button')
+
+        selectedItem.type = 'button'
+        selectedItem.classList.add('calc__selected-item')
+        selectedItem.textContent = title.textContent.trim()
+
+        selectedList.appendChild(selectedItem)
+
+        selectedItem.addEventListener('click', () => {
+
+          block.classList.remove('active')
+
+          updateCurrentPane(pane)
+
+        })
+
+      })
+
+
+      if (blocks.length) {
+        selectedList.style.display = 'flex'
+        clearButton.style.display = 'block'
+      } else {
+        selectedList.style.display = 'none'
+        clearButton.style.display = 'none'
+      }
+
+    }
+
+    updateInfo()
+  }
+
+
+  panes.forEach(pane => {
+
+    const calcWrap = pane.querySelector('.calc__wrap')
+    const searchForm = pane.querySelector('.nav__search')
+
+    if (!calcWrap || !searchForm) return
+
+    const calcBlocks = calcWrap.querySelectorAll('.calc__block')
+
+    if (!calcBlocks.length) return
+
+
+    const selectedList = document.createElement('div')
+
+    selectedList.classList.add('calc__selected-list')
+    selectedList.style.display = 'none'
+
+    searchForm.before(selectedList)
+
+
+    const clearButton = document.createElement('button')
+
+    clearButton.type = 'button'
+    clearButton.classList.add('calc__clear')
+    clearButton.textContent = 'Очистить всё'
+
+    clearButton.style.display = 'none'
+
+    selectedList.after(clearButton)
+
+
+    calcBlocks.forEach(block => {
+
+      block.addEventListener('click', () => {
+
+        if (block.classList.contains('active')) {
+          block.classList.remove('active')
+        } else {
+          block.classList.add('active')
+        }
+
+        updateCurrentPane(pane)
+
+      })
+
+    })
+
+
+    clearButton.addEventListener('click', () => {
+
+      calcBlocks.forEach(block => {
+        block.classList.remove('active')
+      })
+
+      updateCurrentPane(pane)
+
+    })
+
+  })
+
+
+  calcDeleteButtons.forEach(calcDelete => {
+
+    calcDelete.addEventListener('click', event => {
+
+      event.preventDefault()
+
+      panes.forEach(pane => {
+
+        const calcBlocks = pane.querySelectorAll('.calc__block')
+
+        calcBlocks.forEach(block => {
+          block.classList.remove('active')
+        })
+
+        updateCurrentPane(pane)
+
+      })
+
+      updateInfo()
+
+    })
+
+  })
+
+
+  panes.forEach(pane => {
+    updateCurrentPane(pane)
+  })
+
+  updateInfo()
 
 })
 // Замена <img class="svg"> на inline SVG
