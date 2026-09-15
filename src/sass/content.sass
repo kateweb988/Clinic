@@ -262,6 +262,9 @@ input:-moz-placeholder
          height: 38px
          &:first-child
             width: 196px
+            border: 1px solid transparent
+            &:hover
+               border: 1px solid rgb(0, 110, 171)
          &:nth-child(2)
             width: 152px
    &__tel 
@@ -333,6 +336,8 @@ input:-moz-placeholder
       width: 189px
       height: 38px
       margin-left: auto
+      &:hover 
+         background: #FF9A9B
    .menu 
       display: flex
       align-items: center
@@ -397,7 +402,7 @@ input:-moz-placeholder
       &__dropdown
          position: absolute
          top: 256%
-         left: -15px
+         left: -16px
          margin: 0
          list-style: none
          background: #fff
@@ -408,7 +413,7 @@ input:-moz-placeholder
          min-width: 179px
          border-radius: 20px
          box-shadow: 0px 4px 20px 0px rgba(5,60,91,0.10)
-         padding: 20px 15px
+         padding: 20px 16px
          gap: 10px
          display: flex
          flex-direction: column
@@ -440,7 +445,8 @@ input:-moz-placeholder
       position: relative
       width: 100%
    .swiper1 
-      overflow: hidden 
+      overflow: hidden
+      background: url(/img/bg.png) no-repeat center center / cover
       .swiper-slide 
          overflow: hidden
          border-radius: 30px
@@ -449,8 +455,8 @@ input:-moz-placeholder
          img 
             position: absolute
             top: 0
-            left: 0
-            width: 100%
+            right: 0px
+            width: 55%
             height: 100%
             z-index: -1
             object-fit: cover
@@ -480,7 +486,7 @@ input:-moz-placeholder
             background: white 
             color: $blue
             &:hover 
-               background: $blue 
+               background: rgb(0, 110, 171)
                color: white
    .arrow 
       position: absolute
@@ -507,13 +513,14 @@ input:-moz-placeholder
       padding: 23px 10px 10px 20px
       flex-direction: column
       justify-content: space-between
-      &:hover 
+      &:hover
+         background: #EEF6FB
          .main__arrow 
             path
                &:nth-child(1)
-                  fill: $pink
-               &:nth-child(2)
                   fill: white
+               &:nth-child(2)
+                  fill: $pink
    &__area 
       display: flex
       align-items: center
@@ -550,7 +557,7 @@ input:-moz-placeholder
    z-index: 5
    cursor: pointer
    &:hover 
-      background: $blue
+      background: #006EAB
 .about 
    padding: 60px 0
    &__wrap 
@@ -630,7 +637,7 @@ input:-moz-placeholder
                letter-spacing: -0.1px
             &:hover 
                span 
-                  background: $blue
+                  background: #006EAB
    &__row 
       width: 100%
       display: flex
@@ -881,6 +888,8 @@ input:-moz-placeholder
       button 
          margin-top: 25px
          border: none
+         &:hover 
+            background: #FF9A9B
 .sales 
    padding: 60px 0 
    .arrow 

@@ -1354,6 +1354,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ========================================
   const swiper2 = new Swiper('.swiper2', {
     slidesPerView: 4,
+    loop: true,
     spaceBetween: 20,
 
     navigation: {
@@ -1377,6 +1378,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       1200: {
         slidesPerView: 4,
+        loop: true,
         spaceBetween: 20,
       }
     }
@@ -1388,6 +1390,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ========================================
   const swiper3 = new Swiper('.swiper3', {
     slidesPerView: 3,
+    loop: true,
     spaceBetween: 20,
 
     navigation: {
@@ -1411,6 +1414,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       1200: {
         slidesPerView: 3,
+        loop: true,
         spaceBetween: 20,
       }
     }
@@ -1422,6 +1426,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ========================================
   const swiper4 = new Swiper('.swiper4', {
     slidesPerView: 4,
+    loop: true,
     spaceBetween: 20,
 
     navigation: {
@@ -1445,6 +1450,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       1200: {
         slidesPerView: 4,
+        loop: true,
         spaceBetween: 20,
       }
     }
@@ -3064,45 +3070,76 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 // Замена <img class="svg"> на inline SVG
 document.addEventListener("DOMContentLoaded", () => {
-  const svgImages = document.querySelectorAll('img.svg');
+  const svgImages = document.querySelectorAll("img.svg");
 
-  svgImages.forEach(img => {
-    const imgURL = img.getAttribute('src');
+  svgImages.forEach((img, index) => {
+    const imgURL = img.getAttribute("src");
 
     fetch(imgURL)
       .then(response => response.text())
       .then(data => {
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, 'image/svg+xml');
-        let svg = xmlDoc.querySelector('svg');
+        const xmlDoc = parser.parseFromString(data, "image/svg+xml");
+        const svg = xmlDoc.querySelector("svg");
 
         if (!svg) return;
 
-        // Перенос ID
+        // Делаем все внутренние ID уникальными
+        const idMap = {};
+
+        svg.querySelectorAll("[id]").forEach(element => {
+          const oldId = element.id;
+          const newId = `${oldId}-${index}`;
+
+          idMap[oldId] = newId;
+          element.id = newId;
+        });
+
+        // Обновляем ссылки на изменённые ID
+        svg.querySelectorAll("*").forEach(element => {
+          Array.from(element.attributes).forEach(attr => {
+            let value = attr.value;
+
+            Object.entries(idMap).forEach(([oldId, newId]) => {
+              value = value
+                .replaceAll(`url(#${oldId})`, `url(#${newId})`)
+                .replaceAll(`#${oldId}`, `#${newId}`);
+            });
+
+            element.setAttribute(attr.name, value);
+          });
+        });
+
+        // Перенос ID самого img
         if (img.id) {
-          svg.setAttribute('id', img.id);
+          svg.setAttribute("id", img.id);
         }
 
         // Перенос классов
-        const classes = img.getAttribute('class');
+        const classes = img.getAttribute("class");
+
         if (classes) {
-          svg.setAttribute('class', `${classes} replaced-svg`);
+          svg.setAttribute("class", `${classes} replaced-svg`);
         }
 
-        // Удаление некорректных xmlns
-        svg.removeAttribute('xmlns:a');
+        svg.removeAttribute("xmlns:a");
 
-        // Добавление viewBox, если его нет
-        if (!svg.getAttribute('viewBox') && svg.getAttribute('height') && svg.getAttribute('width')) {
-          svg.setAttribute('viewBox', `0 0 ${svg.getAttribute('width')} ${svg.getAttribute('height')}`);
+        // Добавляем viewBox
+        if (
+          !svg.getAttribute("viewBox") &&
+          svg.getAttribute("height") &&
+          svg.getAttribute("width")
+        ) {
+          svg.setAttribute(
+            "viewBox",
+            `0 0 ${svg.getAttribute("width")} ${svg.getAttribute("height")}`
+          );
         }
 
-        // Замена <img> на <svg>
-        img.parentNode.replaceChild(svg, img);
+        img.replaceWith(svg);
       })
       .catch(error => {
         console.error(`Ошибка при загрузке SVG: ${imgURL}`, error);
       });
   });
 });
-
