@@ -612,6 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 })
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // =====================================================
@@ -659,16 +660,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
 
-      // Клик по стрелке
-      arrow.addEventListener('click', () => {
+
+      // =================================================
+      // ФУНКЦИЯ ЗАКРЫТИЯ ЭЛЕМЕНТА
+      // =================================================
+
+      function closeItem() {
+
+        item.classList.remove('active');
+
+        if (isFirstTab) {
+
+          items.forEach((li, index) => {
+            li.style.display =
+              index < 3 ? '' : 'none';
+          });
+
+        } else {
+
+          items.forEach(li => {
+            li.style.display = 'none';
+          });
+
+        }
 
         const wrap = item.closest('.info__wrap');
-        const isOpen = item.classList.contains('active');
+
+        if (wrap) {
+
+          const hasActive =
+            wrap.querySelector('.info__item.active');
+
+          wrap.classList.toggle(
+            'has-active',
+            !!hasActive
+          );
+
+        }
+
+      }
+
+
+      // =================================================
+      // ФУНКЦИЯ ОТКРЫТИЯ ЭЛЕМЕНТА
+      // =================================================
+
+      function openItem() {
+
+        const wrap = item.closest('.info__wrap');
 
         // Закрываем остальные блоки
         if (wrap) {
 
-          const allItems = wrap.querySelectorAll('.info__item');
+          const allItems =
+            wrap.querySelectorAll('.info__item');
 
           allItems.forEach(otherItem => {
 
@@ -695,47 +740,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
-        // Открываем / закрываем текущий блок
-        if (isOpen) {
+        // Открываем текущий
+        item.classList.add('active');
 
-          item.classList.remove('active');
+        items.forEach(li => {
+          li.style.display = '';
+        });
 
-          if (isFirstTab) {
-
-            items.forEach((li, index) => {
-              li.style.display =
-                index < 3 ? '' : 'none';
-            });
-
-          } else {
-
-            items.forEach(li => {
-              li.style.display = 'none';
-            });
-
-          }
-
-        } else {
-
-          item.classList.add('active');
-
-          items.forEach(li => {
-            li.style.display = '';
-          });
-
+        if (wrap) {
+          wrap.classList.add('has-active');
         }
 
-        // Проверяем наличие открытого блока
-        if (wrap) {
+      }
 
-          const hasActive =
-            wrap.querySelector('.info__item.active');
 
-          wrap.classList.toggle(
-            'has-active',
-            !!hasActive
-          );
+      // =================================================
+      // КЛИК ПО СТРЕЛКЕ
+      // =================================================
 
+      arrow.addEventListener('click', event => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen =
+          item.classList.contains('active');
+
+        if (isOpen) {
+          closeItem();
+        } else {
+          openItem();
+        }
+
+      });
+
+
+      // =================================================
+      // КЛИК ПО ПУСТОМУ МЕСТУ ПОДЛОЖКИ
+      // =================================================
+
+      item.addEventListener('click', event => {
+
+        // Работает только если блок уже открыт
+        if (!item.classList.contains('active')) {
+          return;
+        }
+
+        // Стрелку обрабатываем отдельно выше
+        if (event.target.closest('.info__arrow')) {
+          return;
+        }
+
+        // Клик по самому списку / его содержимому
+        // ничего не закрывает
+        if (event.target.closest('ul')) {
+          return;
+        }
+
+        // Клик по ссылкам, кнопкам, input и т.д.
+        // тоже ничего не закрывает
+        if (
+          event.target.closest(
+            'a, button, input, textarea, select, label'
+          )
+        ) {
+          return;
+        }
+
+        // Закрываем ТОЛЬКО если нажали
+        // непосредственно на пустую область .info__item
+        if (event.target === item) {
+          closeItem();
         }
 
       });
@@ -1218,6 +1293,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+
 document.addEventListener('DOMContentLoaded', () => {
 	const selects = document.querySelectorAll('.nav__select');
 
@@ -1492,6 +1569,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const swiper25 = new Swiper('.swiper-rev', {
   slidesPerView: 1,
+  loop: true,
   spaceBetween: 10,
 
   navigation: {
@@ -1512,6 +1590,7 @@ const swiper25 = new Swiper('.swiper-rev', {
 
     1300: {
       slidesPerView: 2,
+      loop: true,
       spaceBetween: 20,
     }
   }
