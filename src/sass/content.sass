@@ -530,6 +530,7 @@ input:-moz-placeholder
       align-items: center
       img 
          margin-right: 12px
+         width: 50px
       p 
          font-size: 20px
          font-weight: 500
@@ -737,6 +738,9 @@ input:-moz-placeholder
             transform: rotate(180deg)
       &_hidden 
          display: none
+      img 
+         max-height: 50px
+         width: 50px
       h3 
          margin-top: 0
          margin-bottom: 20px
@@ -943,6 +947,39 @@ input:-moz-placeholder
                      fill: white
 .lic 
    padding: 60px 0 
+   &__flex
+      display: flex
+      justify-content: space-between
+      .lic__wrap
+         width: 44.36%
+   &__area 
+      display: flex
+      justify-content: space-between
+      gap: 20px 
+      flex-wrap: wrap
+      width: 54%
+   &__el 
+      width: 48.5%
+      overflow: hidden
+      background: #EEF6FB
+      border-radius: 30px
+      padding: 47px 49px 30px
+      img 
+         margin-bottom: 34px
+      h3 
+         margin-top: 0
+         margin-bottom: -2px
+         font-weight: 500
+         font-size: 40px
+         line-height: 110%
+         letter-spacing: -0.01em
+         color: #053C5B
+      p 
+         font-weight: 500
+         font-size: 15px
+         line-height: 120%
+         letter-spacing: -0.01em
+         color: #053C5B
    &__wrap 
       padding: 60px 50px
       overflow: hidden
@@ -1485,17 +1522,27 @@ input:-moz-placeholder
          &:last-child
             margin-bottom: 0
          .svg 
+            width: 20px
             margin-right: 14px
             path 
                fill: $light
          &:hover 
             color: $light
+         &.first 
+            .svg 
+               path 
+                  fill: none
+            &.active 
+               .svg 
+                  .st2 
+                     fill: none !important
       .tabs__btn_active
          background: #006eab
          color: white !important
          .svg 
             path 
                fill: white !important
+      
    &__row 
       gap: 20px 
       flex-wrap: wrap 
@@ -2338,20 +2385,61 @@ input:-moz-placeholder
       height: 401px
       border-radius: 20px
       overflow: hidden
+      margin-top: 20px
    .vacan__top
       margin-bottom: 25px
       p
          font-size: 15px
-   &__wrap 
+   &__wrap
       display: flex
       align-items: flex-start
-      justify-content: space-between
-   &__content 
+      justify-content: space-betwee
+   &__content
       width: 100%
       max-width: 830px
-      ul 
+      h2
+         font-size: 20px
+         font-weight: 500
+         color: #053c5b
+         line-height: 22px
+         letter-spacing: -0.2px
+         margin-top: 40px
+         margin-bottom: 10px
+
+      h3
+         font-size: 15px
+         font-weight: 500
+         color: #053c5b
+         line-height: 17px
+         letter-spacing: -0.01px
+         margin-top: 20px
+         margin-bottom: 20px
+
+      h4
+         font-size: 15px
+         font-weight: 500
+         color: #053c5b
+         line-height: 17px
+         letter-spacing: -0.01px
+         margin-top: 0
+         margin-bottom: 5px
+
+      p
+         font-size: 15px
+         font-weight: 400
+         color: #647B89
+         line-height: 23px
+         letter-spacing: -0.01px
+         margin-top: 0
+         margin-bottom: 0
+
+      ul
+         margin-top: 0
          margin-bottom: 30px
-         li 
+         padding: 0
+         list-style: none
+
+         li
             font-size: 15px
             font-weight: 400
             color: #647B89
@@ -2359,33 +2447,23 @@ input:-moz-placeholder
             letter-spacing: -0.01px
             display: flex
             align-items: flex-start
-            &:before 
+
+            &:before
                content: ""
                display: inline-flex
                background: #647B89
                width: 3px
                height: 3px
-               border-radius: 50px 
-               flex: 1 0 auto 
+               border-radius: 50px
+               flex: 1 0 auto
                max-width: 3px
                margin-right: 8px
                margin-left: 8px
                position: relative
                top: 9px
 
-   &__title 
-      font-size: 15px
-      font-weight: 500
-      color: #053c5b
-      line-height: 17px
-      letter-spacing: -0.01px
-      margin-top: 0
-   h3 
-      &.vacan-item__title
-         margin-bottom: 25px
-   h4 
-      &.vacan-item__title
-         margin-bottom: 5px
+      #map
+         width: 100%
    &__text 
       margin-bottom: 50px
       p 

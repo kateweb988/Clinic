@@ -96,6 +96,10 @@
       max-width: 553px
    .general__block
       width: 18.7%
+   .lic__flex 
+      .lic__item
+         width: 221px
+         height: 323px
 @media screen and (max-width: 1300px)
    .side-menu, .side-menu__overlay
       top: 157px
@@ -792,6 +796,13 @@
          order: 2
    .general .order-healing
       padding-top: 100px
+   .lic__flex
+      flex-direction: column
+   .lic__flex .lic__wrap
+      width: 100%
+      margin-bottom: 20px
+   .lic__area
+      width: 100%
 @media ( max-width: 950px )
    .vacan-item
       padding-bottom: 50px
@@ -1653,6 +1664,22 @@
       width: 510px !important
    .general__block
       width: 49%
+   .lic__el
+      width: 100%
+      padding: 30px 20px
+   .lic__el img
+      width: 40px
+      margin-bottom: 20px
+   .lic__el h3
+      margin-bottom: 4px
+      font-size: 28px
+   .lic__el p
+      font-size: 13px
+   .lic__flex .lic__item 
+      width: 160px
+      height: 228px
+   .lic__area
+      gap: 10px
 @media screen and (max-width: 576px)
    .pay__item
       img 
@@ -2050,6 +2077,15 @@
    .gen .general__block
       &:nth-child(n+12)
          display: none
+   .vacan-item__content p, .vacan-item__content h3, .vacan-item__content h4
+      font-size: 13px
+      line-height: 18px
+   .vacan-item #map
+      height: 468px
+   .vacan-item__content h2
+      font-size: 16px
+      line-height: 100%
+      margin-top: 30px
 @media screen and (max-width: 370px)
    .general__block
       width: 48.4%
