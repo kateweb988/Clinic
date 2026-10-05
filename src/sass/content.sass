@@ -896,7 +896,7 @@ input:-moz-placeholder
          max-width: 20px 
          margin-right: 10px
       .custom-checkbox:checked + label::before
-         background-color: white !important
+         background-color: $blue !important
          background-size: 65% !important
          background: url(/img/check.svg) no-repeat center center
       button 
@@ -3126,6 +3126,10 @@ input:-moz-placeholder
       align-items: center
       margin-bottom: 22px
       gap: 3px
+      img 
+         width: 18px
+         height: auto
+         margin-right: 0
    &__text 
       font-size: 15px
       font-weight: 400
@@ -3800,9 +3804,6 @@ input:-moz-placeholder
          color: $blue
    .healing-item__faq
       margin-top: 61px
-   .healing-item__block:after
-      top: 51px
-      right: 10px
 .doctors 
    padding-bottom: 60px
    .diagnostics__row .nav__search

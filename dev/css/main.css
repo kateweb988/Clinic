@@ -1566,7 +1566,7 @@ input:-moz-placeholder {
   margin-right: 10px;
 }
 .order__form .custom-checkbox:checked + label::before {
-  background-color: white !important;
+  background-color: #053C5B !important;
   background-size: 65% !important;
   background: url(../img/check.svg) no-repeat center center;
 }
@@ -4213,6 +4213,11 @@ input:-moz-placeholder {
   margin-bottom: 22px;
   gap: 3px;
 }
+.rev__stars img {
+  width: 18px;
+  height: auto;
+  margin-right: 0;
+}
 .rev__text {
   font-size: 15px;
   font-weight: 400;
@@ -5013,10 +5018,6 @@ input:-moz-placeholder {
 }
 .operations-item .healing-item__faq {
   margin-top: 61px;
-}
-.operations-item .healing-item__block:after {
-  top: 51px;
-  right: 10px;
 }
 
 .doctors {
